@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.finalhealty.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.example.finalhealty.ui.perfil.PerfilFragment"
+        android:label="@string/menu_perfil"
+        tools:layout="@layout/fragment_perfil" />
+
+    <fragment
+        android:id="@+id/nav_actividades"
+        android:name="com.example.finalhealty.ui.actividades.ActividadesFragment"
+        android:label="@string/menu_actividades"
+        tools:layout="@layout/fragment_actividades" />
+
+    <fragment
+        android:id="@+id/nav_eventos"
+        android:name="com.example.finalhealty.ui.eventos.EventosFragment"
+        android:label="@string/menu_eventos"
+        tools:layout="@layout/fragment_eventos" />
+
+    <fragment
+        android:id="@+id/nav_medallas"
+        android:name="com.example.finalhealty.ui.medallas.MedallasFragment"
+        android:label="@string/menu_medallas"
+        tools:layout="@layout/fragment_medallas" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.finalhealty.ui.logout.LogoutFragment"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/fragment_logout" />
+</navigation>
