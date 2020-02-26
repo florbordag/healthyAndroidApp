@@ -68,7 +68,9 @@ public class EventosViewModel extends AndroidViewModel {
 
                         misEventos.add(e);
                     }
-                    miEventoMutableLiveData.postValue(misEventos);
+                    if(getMisEventosMLD()!=null){
+                        miEventoMutableLiveData.postValue(misEventos);
+                    }
                 }
             }
 
@@ -89,7 +91,9 @@ public class EventosViewModel extends AndroidViewModel {
 
                         eventosDisponibles.add(e);
                     }
-                    suEventoMutableLiveData.postValue(eventosDisponibles);
+                    if(getSusEventosMLD()!=null){
+                        suEventoMutableLiveData.postValue(eventosDisponibles);
+                    }
                 }
             }
 

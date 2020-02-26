@@ -1,10 +1,48 @@
 package com.example.finalhealty.model;
 
 public class Participante {
-    private Usuario usuario;
+    private int id;
+    private int usuarioId;
+    private  Usuario usuario;
+    private int actividadId;
     private Actividad actividad;
-    private String fechaUltModParticipante;
-    private int estadoParticipante;
+    private String fechaUltMod;
+    private int estado;
+
+    public Participante(int id, int usuarioId, int actividadId, String fechaUltMod, int estado) {
+        this.id = id;
+        this.usuarioId = usuarioId;
+        this.actividadId = actividadId;
+        this.fechaUltMod = fechaUltMod;
+        this.estado = estado;
+    }
+
+    public Participante(int id, Usuario usuario, Actividad actividad, String fechaUltMod, int estado) {
+        this.id = id;
+        this.usuario = usuario;
+        this.actividad = actividad;
+        this.fechaUltMod = fechaUltMod;
+        this.estado = estado;
+    }
+
+    public Participante() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -12,6 +50,14 @@ public class Participante {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public int getActividadId() {
+        return actividadId;
+    }
+
+    public void setActividadId(int actividadId) {
+        this.actividadId = actividadId;
     }
 
     public Actividad getActividad() {
@@ -22,34 +68,32 @@ public class Participante {
         this.actividad = actividad;
     }
 
-    public String getFechaUltModParticipante() {
-        return fechaUltModParticipante;
+    public String getFechaUltMod() {
+        return fechaUltMod;
     }
 
-    public void setFechaUltModParticipante(String fechaUltModParticipante) {
-        this.fechaUltModParticipante = fechaUltModParticipante;
+    public void setFechaUltMod(String fechaUltMod) {
+        this.fechaUltMod = fechaUltMod;
     }
 
-    public int getEstadoParticipante() {
-        return estadoParticipante;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setEstadoParticipante(int estadoParticipante) {
-        this.estadoParticipante = estadoParticipante;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
-    public Participante(Usuario usuario, Actividad actividad, String fechaUltModParticipante, int estadoParticipante) {
-        this.usuario = usuario;
-        this.actividad = actividad;
-        this.fechaUltModParticipante = fechaUltModParticipante;
-        this.estadoParticipante = estadoParticipante;
-    }
-
-    public Participante() {
-    }
-
-    public Participante(Usuario usuario, Actividad actividad) {
-        this.usuario = usuario;
-        this.actividad = actividad;
+    @Override
+    public String toString() {
+        return "Participante{" +
+                "id=" + id +
+                ", usuarioId=" + usuarioId +
+                ", usuario=" + usuario +
+                ", actividadId=" + actividadId +
+                ", actividad=" + actividad +
+                ", fechaUltMod='" + fechaUltMod + '\'' +
+                ", estado=" + estado +
+                '}';
     }
 }

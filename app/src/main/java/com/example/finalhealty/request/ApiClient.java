@@ -17,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -91,6 +92,9 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         @GET("Evento/Usuario/mi")
         Call<List<Evento>> getEventosDisponibles(@Header("Authorization")String token);
 
+        //@POST("Inscripcion/Evento")
+        //Call
+
         //Actividades
         @GET("Actividad/Usuario/mias")
         Call<List<Actividad>> getMisActividades(@Header("Authorization")String token);
@@ -98,6 +102,14 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         @GET("Actividad/Usuario/mi")
         Call<List<Actividad>> getActividadesDisponibles(@Header("Authorization")String token);
 
+        @POST("Participante")
+        Call<Actividad> participar(@Header("Authorization")String token, @Query("ActividadId") int actividadId);
+
+        @GET("Participante")
+        Call<Integer> idParticipante(@Header("Authorization")String token, @Query("usuario") int usuario,@Query("actividad") int actividad);
+
+        @DELETE("Participante/{id}")
+        Call<Participante> abandonar(@Header("Authorization")String token, @Path("id") int id, @Query("Estado") int estado);
 
         //Medallas
 

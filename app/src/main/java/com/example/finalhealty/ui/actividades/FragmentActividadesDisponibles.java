@@ -19,10 +19,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.model.Actividad;
+import com.example.finalhealty.request.ApiClient;
 import com.example.finalhealty.ui.home.HomeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
 
 public class FragmentActividadesDisponibles extends Fragment {
     ActividadesViewModel actividadesViewModel;
@@ -34,9 +37,12 @@ public class FragmentActividadesDisponibles extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        actividadesViewModel =
+                ViewModelProviders.of(this).get(ActividadesViewModel.class);
         v=inflater.inflate(R.layout.frag_dispoactividades, container, false);
 
         cargarActividades(v);
+        actividadesViewModel.getSuActividadMutableLiveData();
         actividadesViewModel.obtenerActividadesDisponibles();
 
         return v;
@@ -84,14 +90,13 @@ public class FragmentActividadesDisponibles extends Fragment {
             TextView horario=itemView.findViewById(R.id.tvHorario);
             horario.setText(actividad.getHorario());
             Button button= itemView.findViewById(R.id.btnAbandonar);
-            button.setText("Inscribirse");
+            button.setText("Participar");
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   Toast.makeText(getActivity(), "Inscribirse a   "+ actividad.getTitulo(),Toast.LENGTH_LONG).show();
-
-                   //InscribirYreordenar(actividad);
+                   Toast.makeText(getActivity(), "Participar de   "+ actividad.getTitulo(),Toast.LENGTH_LONG).show();
+                   actividadesViewModel.participar(actividad);
 
                 }
 
@@ -100,6 +105,8 @@ public class FragmentActividadesDisponibles extends Fragment {
             return itemView;
         }
     }
+
+
 
 
 }

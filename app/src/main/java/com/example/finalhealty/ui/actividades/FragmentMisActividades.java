@@ -96,7 +96,7 @@ public class FragmentMisActividades extends Fragment {
                     @Override
                     public void onClick(View view) {
                       Toast.makeText(getActivity(), "Funciona   "+ actividad.getTitulo(),Toast.LENGTH_LONG).show();
-                        //desinscribirYreordenar(actividad);
+                        actividadesViewModel.abandonar(actividad);
 
                     }});
 

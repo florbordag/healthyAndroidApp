@@ -31,15 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView error;
     private String token;
     private MainViewModel mainViewModel;
-    //variables del USUARIO que voy a necesitar:
     public static Usuario usuarioReal;
-    public static List<Actividad> ListaActividades= new ArrayList<>();
-    public static List<Actividad> ListaActividadesDisponibles= new ArrayList<>();
-    public static List<Evento> EventosDisponibles= new ArrayList<>();
-    public static List<Actividad> ListaMisActividades = new ArrayList<>();
-    public static List<Evento> ListaMisEventos = new ArrayList<>();
-    public static List<Participante> ListaParticipantes= new ArrayList<>();
-    public static List<InscripcionAEvento> ListaInscripcionEvento= new ArrayList<>();
 
 
     @Override
