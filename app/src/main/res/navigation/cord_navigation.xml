@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cord_navigation"
+    app:startDestination="@id/cord_home">
+
+    <fragment
+        android:id="@+id/cord_home"
+        android:name="com.example.finalhealty.coordinador.ui.coordmain.Home.cord_home"
+        android:label="fragment_cord_home"
+        tools:layout="@layout/fragment_cord_home" />
+    <fragment
+        android:id="@+id/cord_actividades"
+        android:name="com.example.finalhealty.coordinador.ui.coordmain.actividades.CordActividades"
+        android:label="fragment_coord_actividades"
+        tools:layout="@layout/fragment_coord_actividades" />
+    <fragment
+        android:id="@+id/cord_eventos"
+        android:name="com.example.finalhealty.coordinador.ui.coordmain.eventos.cord_eventos"
+        android:label="fragment_cord_eventos"
+        tools:layout="@layout/fragment_cord_eventos" />
+</navigation>
