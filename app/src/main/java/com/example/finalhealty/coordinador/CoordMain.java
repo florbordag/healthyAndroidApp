@@ -1,64 +1,70 @@
 package com.example.finalhealty.coordinador;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.finalhealty.R;
-import com.example.finalhealty.coordinador.ui.coordmain.CoordMainFragment;
 import com.google.android.material.navigation.NavigationView;
 
-public class CoordMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CoordMain extends AppCompatActivity {
+    TextView titulo,secundario;
+    ImageView imgPerfil;
+    private DrawerLayout dl;
+    private ActionBarDrawerToggle t;
+    private AppBarConfiguration mAppBarConfiguration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coord_main_activity);
-        Toolbar toolbar = this.findViewById(R.id.toolbar);
+        dl = findViewById(R.id.drawer_cord);
+        Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
 
-        NavigationView leftNavigationView = (NavigationView) findViewById(R.id.nav_view_right);
-        leftNavigationView.setNavigationItemSelectedListener(this);
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, CoordMainFragment.newInstance())
-                    .commitNow();
-        }
+        DrawerLayout drawer = findViewById(R.id.drawer_cord);
+        NavigationView navigationView = findViewById(R.id.nv);
+        /////
 
 
-    }    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
+         NavigationView nv;  nv = findViewById(R.id.nv);
+        View hView = nv.getHeaderView(0);
+        titulo = hView.findViewById(R.id.titulo_menucord) ;
+        imgPerfil = hView.findViewById(R.id.foto_menu_cor);
+        secundario= hView.findViewById(R.id.secundario_menucord);
 
-        switch (id) {
 
-            case R.id.nav_perfil:
-                Toast.makeText(this, "Right info action", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_actividades:
-                Toast.makeText(this, "Right info about", Toast.LENGTH_SHORT).show();
-                break;
-        }
+         mAppBarConfiguration = new AppBarConfiguration.Builder(
+                 R.id.cord_home, R.id.cord_actividades,
+                R.id.cord_eventos)
+                .setDrawerLayout(drawer)
+                .build();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        drawer.closeDrawer(GravityCompat.END);
-        return true;
+
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_cord);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_cord);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
 
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
 
 }
