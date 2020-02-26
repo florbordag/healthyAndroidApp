@@ -15,10 +15,6 @@ import android.widget.Toast;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.coordinador.CoordMain;
-import com.example.finalhealty.model.Actividad;
-import com.example.finalhealty.model.Evento;
-import com.example.finalhealty.model.InscripcionAEvento;
-import com.example.finalhealty.model.Participante;
 import com.example.finalhealty.model.Usuario;
 
 import java.util.ArrayList;
@@ -62,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if (usuarioReal!=null&&usuarioReal.getRol().equals("Coordinador")){
                     Intent i= new Intent(getApplicationContext(), CoordMain.class);
                     startActivity(i);
-                } else if(usuarioReal!=null){
-                    //admin
+                } else if(usuarioReal!=null &&usuarioReal.getRol().equals("Administrador")){
+                    Toast.makeText(getApplicationContext(),"Proximamente: Sesion Administrador ", Toast.LENGTH_LONG).show();
                 }
             }
         });

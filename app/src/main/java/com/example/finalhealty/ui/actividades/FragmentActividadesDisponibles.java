@@ -95,8 +95,8 @@ public class FragmentActividadesDisponibles extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   Toast.makeText(getActivity(), "Participar de   "+ actividad.getTitulo(),Toast.LENGTH_LONG).show();
-                   actividadesViewModel.participar(actividad);
+                    Toast.makeText(getActivity(), "Participar de   "+ actividad.getTitulo(),Toast.LENGTH_LONG).show();
+                    actividadesViewModel.participar(actividad);
 
                 }
 

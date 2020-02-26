@@ -92,7 +92,7 @@ public class FragmentMisEventos extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(getActivity(), "Funciona   "+ evento.getTitulo(),Toast.LENGTH_LONG).show();
-                   //MisEventos= desinscribirYreordenar(evento);
+                    //MisEventos= desinscribirYreordenar(evento);
 
                 }});
 

@@ -12,19 +12,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.finalhealty.model.Actividad;
 import com.example.finalhealty.model.Evento;
-import com.example.finalhealty.model.InscripcionAEvento;
-import com.example.finalhealty.model.Participante;
-import com.example.finalhealty.model.Predio;
-import com.example.finalhealty.model.Usuario;
 import com.example.finalhealty.request.ApiClient;
-import com.example.finalhealty.ui.inicio.MainViewModel;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;

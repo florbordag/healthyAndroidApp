@@ -56,7 +56,7 @@ public class Principal extends AppCompatActivity {
         cargarFotoPerfil(MainActivity.usuarioReal.getFotoPerfil());
 
         secundario = hView.findViewById(R.id.secundario);
-        secundario.setText(" ");
+        secundario.setText("Proximamente: Empresa");
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 

@@ -104,5 +104,3 @@ public class EventosViewModel extends AndroidViewModel {
         });
     }
 }
-
-
