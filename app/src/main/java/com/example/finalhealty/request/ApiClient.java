@@ -4,12 +4,12 @@ import android.util.Log;
 
 import com.example.finalhealty.model.Actividad;
 import com.example.finalhealty.model.Evento;
+import com.example.finalhealty.model.MedallaVirtual;
 import com.example.finalhealty.model.Participante;
 import com.example.finalhealty.model.Usuario;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -92,8 +92,14 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         @GET("Evento/Usuario/mi")
         Call<List<Evento>> getEventosDisponibles(@Header("Authorization")String token);
 
-        //@POST("Inscripcion/Evento")
-        //Call
+        @POST("InscripcionEvento")
+        Call<Evento> inscribirse(@Header("Authorization")String token, @Query("EventoId") int eventoId);
+
+        @GET("InscripcionEvento")
+        Call<Integer> idInscripcion(@Header("Authorization")String token, @Query("usuario") int usuario, @Query("evento") int evento);
+
+        @DELETE("InscripcionEvento/{id}")
+        Call<Integer> abandonarEvento(@Header("Authorization")String token, @Path("id") int id, @Query("Estado") int estado);
 
         //Actividades
         @GET("Actividad/Usuario/mias")
@@ -112,7 +118,8 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         Call<Participante> abandonar(@Header("Authorization")String token, @Path("id") int id, @Query("Estado") int estado);
 
         //Medallas
-
+        @GET("MedallaVirtual/{id}")
+        Call<List<MedallaVirtual>> misMedallas(@Header("Authorization")String token, @Path("id") int id);
 
         ///////COORDINADORES////////
 
