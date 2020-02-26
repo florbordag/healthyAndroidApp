@@ -1,15 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".coordinador.ui.coordmain.Home.cord_home">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/homehome"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/conference_100" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Usuarios en plataforma:"
+                android:textColor="@android:color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/tvCantUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="xxx"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/user_color" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Usuarios propios:           "
+                android:textColor="@android:color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/tvCantUserMios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="xxx"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageAct"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/activi"/>
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Total actividades:           "
+                android:textColor="@android:color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/tvTotalActividades"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="xxx"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageEvent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/eventos" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Total Eventos:                 "
+                android:textColor="@android:color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/tvTotalEventos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="xxx"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </FrameLayout>

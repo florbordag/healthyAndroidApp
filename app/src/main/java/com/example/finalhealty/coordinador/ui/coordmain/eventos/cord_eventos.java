@@ -22,7 +22,6 @@ public class cord_eventos extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         ViewModelProviders.of(this).get(CordEventoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_cord_eventos, container, false);
-        final TextView textView = root.findViewById(R.id.homehome);
         ((CoordMain) getActivity()).setActionBarTitle("Coordinadores - Eventos");
   /*      cordHomeViewModel.getPropietarioMutableLiveData().observe(this, new Observer<Usuario>() {
             @Override

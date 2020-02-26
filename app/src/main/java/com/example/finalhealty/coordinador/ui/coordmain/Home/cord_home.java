@@ -22,7 +22,6 @@ public class cord_home extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
                 ViewModelProviders.of(this).get(CordHomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_cord_home, container, false);
-        final TextView textView = root.findViewById(R.id.homehome);
         ((CoordMain) getActivity()).setActionBarTitle("Coordinadores - Home");
   /*      cordHomeViewModel.getPropietarioMutableLiveData().observe(this, new Observer<Usuario>() {
             @Override

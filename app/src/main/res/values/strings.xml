@@ -2,6 +2,7 @@
     <string name="app_name">finalHealty</string>
     <string name="title_activity_principal">Principal</string>
     <string name="title_activity_coord">Coordinador</string>
+    <string name="title_activity_Admin">Administrador</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -25,4 +26,11 @@
     <string name="invalid_password">Password incorrecto.</string>
     <string name="login_failed">"Error al iniciar sesión. Las credenciales no son correctas. Intente nuevamente."</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="admin_home">ADMINISTRADOR - Inicio</string>
+    <string name="crear_usuario">ADMINISTRADOR - Crear usuario</string>
+    <string name="listarUsuarios">ADMINISTRADOR - Listar Usuarios</string>
+    <string name="listarActividades">ADMINISTRADOR - Listar actividades</string>
+    <string name="listarEventos">ADMINISTRADOR - Listar eventos</string>
 </resources>

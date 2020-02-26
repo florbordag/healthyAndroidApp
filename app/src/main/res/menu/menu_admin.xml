@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="nv_admin">
+
+    <item
+        android:id="@+id/home_admin"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="@string/admin_home" />
+    <item
+        android:id="@+id/crearUsuario"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="@string/crear_usuario"/>
+    <item
+        android:id="@+id/listarUsuarios"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="@string/listarUsuarios" />
+    <item
+        android:id="@+id/listarActividades"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="@string/listarActividades" />
+    <item
+        android:id="@+id/listarEventos"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="@string/listarEventos" />
+
+
+</menu>

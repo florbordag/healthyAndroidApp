@@ -20,6 +20,10 @@
             android:label="@string/title_activity_coord"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
+            android:name=".administrador.AdminMain"
+            android:label="@string/title_activity_Admin"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ui.actividades.ActividadesFragment"
             android:label="@string/menu_actividades"
             android:theme="@style/AppTheme.NoActionBar"></activity>

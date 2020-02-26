@@ -12,17 +12,17 @@ import com.example.finalhealty.model.Usuario;
 
 public class CordEventoViewModel extends AndroidViewModel {
     private Context context;
-    private MutableLiveData<Usuario> usuarioMutableLiveData;
+    private MutableLiveData<Usuario> misEventosMutableLiveData;
 
     public CordEventoViewModel(@NonNull Application application) {
         super(application);
         context=application.getApplicationContext();
     }
 
-    public LiveData<Usuario> getPropietarioMutableLiveData(){
-        if(usuarioMutableLiveData==null){
-            usuarioMutableLiveData=new MutableLiveData<>();
+    public LiveData<Usuario> getMisEventos(){
+        if(misEventosMutableLiveData==null){
+            misEventosMutableLiveData=new MutableLiveData<>();
         }
-        return usuarioMutableLiveData;
+        return misEventosMutableLiveData;
     }
 }
