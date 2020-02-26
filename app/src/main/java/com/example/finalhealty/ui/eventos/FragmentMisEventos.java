@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.model.Evento;
@@ -23,26 +25,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentMisEventos extends Fragment {
-    //public static List<Evento> MisEventos= HomeViewModel.misEventos;
-    View v;
+    private EventosViewModel eventosViewModel;
+    private View v;
+
     public FragmentMisEventos() {
     }
-/*
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        eventosViewModel = ViewModelProviders.of(this).get(EventosViewModel.class);
+        v = inflater.inflate(R.layout.frag_miseventos, container, false);
 
-        v = inflater.inflate(R.layout.frag_misactividades, container, false);
-
-
-        ArrayAdapter<Evento> adapter =new com.example.finalhealty.ui.eventos.FragmentMisEventos.EventoAdapter(getContext(),R.layout.itemactiviti,MisEventos, getLayoutInflater() );
-        ListView lv = v.findViewById(R.id.listaMisActividades);
-        lv.setAdapter(adapter);
+        cargarEventos(v);
+        eventosViewModel.obtenerMisEventos();
 
         return v;
     }
 
+    public void cargarEventos(final View view){
 
+        eventosViewModel= ViewModelProviders.of(this).get(EventosViewModel.class);
+        eventosViewModel.getMisEventosMLD().observe(this, new Observer<List<Evento>>() {
+            @Override
+            public void onChanged(List<Evento> eventos) {
+                ArrayAdapter<Evento> adapter= new EventoAdapter(getContext(),R.layout.itemevento,eventos,getLayoutInflater());
+                ListView lv= view.findViewById(R.id.listaMisEventos);
+                lv.setAdapter(adapter);
+            }
+        });
+    }
 
     //CLASE INTERNA
     public class EventoAdapter extends ArrayAdapter<Evento> {
@@ -64,23 +76,23 @@ public class FragmentMisEventos extends Fragment {
         public View getView(final int position, @Nullable final View convertView, @NonNull ViewGroup parent) {
             View itemView=convertView;
             if(itemView==null){
-                itemView=li.inflate(R.layout.itemactiviti,parent,false);
+                itemView=li.inflate(R.layout.itemevento,parent,false);
             }
             final Evento evento=eventoList.get(position);
-            TextView nombre= itemView.findViewById(R.id.name);
+            TextView nombre= itemView.findViewById(R.id.tituloEvento);
             nombre.setText(evento.getTitulo());
-            TextView descripcion=itemView.findViewById(R.id.descripcion);
+            TextView descripcion=itemView.findViewById(R.id.descripcionEvento);
             descripcion.setText(evento.getDescripcion());
-            TextView horario=itemView.findViewById(R.id.tvHorario);
+            TextView horario=itemView.findViewById(R.id.horarioEvento);
             horario.setText(evento.getFechaHora());
-            Button button= itemView.findViewById(R.id.btnAbandonar);
+            Button button= itemView.findViewById(R.id.btnAbandonarEvento);
             button.setText("Abandonar");
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(getActivity(), "Funciona   "+ evento.getTitulo(),Toast.LENGTH_LONG).show();
-                   MisEventos= desinscribirYreordenar(evento);
+                   //MisEventos= desinscribirYreordenar(evento);
 
                 }});
 
@@ -88,37 +100,4 @@ public class FragmentMisEventos extends Fragment {
         }
     }
 
-
-
-
-    public List<Evento> desinscribirYreordenar(Evento evento) {
-
-        List<Evento> esta = new ArrayList<>();
-
-        if(HomeViewModel.inscripcionesAEventos!=null && HomeViewModel.inscripcionesAEventos.size()!=0) {
-            int x = 0;
-            while (x < HomeViewModel.inscripcionesAEventos.size()) {
-
-                if(HomeViewModel.inscripcionesAEventos.get(x).getEvento().getIdEvento()==evento.getIdEvento())
-                {
-                    HomeViewModel.inscripcionesAEventos.get(x).setEstadoInscripcion(0); }
-
-                x += 1;
-            }
-
-
-            if(HomeViewModel.misEventos.contains(evento)){
-                HomeViewModel.misEventos.remove(evento); }
-
-            MisEventos=HomeViewModel.misEventos;
-
-            HomeViewModel.eventosDisponibles.add(evento);
-
-        }
-
-        esta=HomeViewModel.misEventos;
-        return esta;
-    }
-
-*/
 }

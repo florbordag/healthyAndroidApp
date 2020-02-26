@@ -34,11 +34,9 @@ import retrofit2.Response;
 public class HomeViewModel extends AndroidViewModel {
     private List<Actividad> misActividades=new ArrayList<>();
     private List<Evento> misEventos=new ArrayList<>();
-    private List<Evento> eventosDisponibles=new ArrayList<>();
 
     private MutableLiveData<List<Actividad>> miActividadMutableLiveData;
     private MutableLiveData<List<Evento>> miEventoMutableLiveData;
-    private MutableLiveData<List<Evento>> suEventoMutableLiveData;
 
     private Context context;
     private SharedPreferences sp;
@@ -50,8 +48,6 @@ public class HomeViewModel extends AndroidViewModel {
         sp=context.getSharedPreferences("token",0);
 
     }
-
-
 
     public LiveData<List<Actividad>> getMiActividadMutableLiveData(){
         if(miActividadMutableLiveData==null){
@@ -66,14 +62,6 @@ public class HomeViewModel extends AndroidViewModel {
         }
         return miEventoMutableLiveData;
     }
-
-    public LiveData<List<Evento>> getSusEventosMLD(){
-        if(suEventoMutableLiveData==null){
-            suEventoMutableLiveData=new MutableLiveData<>();
-        }
-        return suEventoMutableLiveData;
-    }
-
 
     public void obtenerMisActividades() {
         Call<List<Actividad>> dato= ApiClient.getMyApiClient().getMisActividades(sp.getString("token",""));
@@ -108,27 +96,6 @@ public class HomeViewModel extends AndroidViewModel {
                         misEventos.add(e);
                     }
                     miEventoMutableLiveData.postValue(misEventos);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Evento>> call, Throwable t) {
-
-            }
-        });
-    }
-    public void obtenerEventosDisponibes (){
-        Call<List<Evento>> dato= ApiClient.getMyApiClient().getEventosDisponibles(sp.getString("token",""));
-        dato.enqueue(new Callback<List<Evento>>() {
-            @Override
-            public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
-                if(!response.body().isEmpty()){
-                    eventosDisponibles=new ArrayList<>();
-                    for (Evento e: response.body()) {
-
-                        eventosDisponibles.add(e);
-                    }
-                    suEventoMutableLiveData.postValue(eventosDisponibles);
                 }
             }
 
