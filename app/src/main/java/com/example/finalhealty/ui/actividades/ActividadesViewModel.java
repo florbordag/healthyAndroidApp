@@ -30,123 +30,80 @@ import retrofit2.Response;
 
 public class ActividadesViewModel extends AndroidViewModel {
     private Context context;
-    private List<Participante> participaciones;
-    private List<Actividad> misActividades;
 
-    private List<Actividad> dispoActividades;
-    private MutableLiveData<Usuario> usuarioMutableLiveData;
-    private MutableLiveData<List<Actividad>> actividadesMutableLiveData;
+    private List<Actividad> misActividades=new ArrayList<>();
+    private List<Actividad> dispoActividades=new ArrayList<>();
+
+    private MutableLiveData<List<Actividad>> miActividadMutableLiveData;
+    private MutableLiveData<List<Actividad>> suActividadMutableLiveData;
+
     private SharedPreferences sp;
 
     public ActividadesViewModel(@NonNull Application application) {
         super(application);
+
         context = application.getApplicationContext();
+        sp=context.getSharedPreferences("token",0);
 
     }
 
-    public LiveData<Usuario> getUserMutableLiveData() {
-        if (usuarioMutableLiveData == null) {
-            usuarioMutableLiveData = new MutableLiveData<>();
-
-            if(participaciones==null){participaciones=HomeViewModel.participaciones;}
-
-            misActividades= HomeViewModel.misActividades;
-            dispoActividades=HomeViewModel.dispoActividades;
-
+    public LiveData<List<Actividad>> getMiActividadMutableLiveData(){
+        if(miActividadMutableLiveData==null){
+            miActividadMutableLiveData=new MutableLiveData<>();
         }
-        return usuarioMutableLiveData;
+        return miActividadMutableLiveData;
     }
 
-
-    public List<Participante> obtenerParticipantes() {
-        //FALSE METHOD
-
-        return participaciones;
-
-
-        //TRUE METHOD : obtener participantes donde idParticipante == user.id Y estado==1
-
-        /*String parametro="[{\"id\":\""+"\" ,\"password\":\""+"\"}]";
-        Call<List<Participante>> dato= ApiClient.getMyApiClient().listarParticipacion(parametro);
-        dato.enqueue(new Callback<List<Participante>>() {
-            @Override
-            public void onResponse(Call<List<Participante>> call, Response<List<Participante>> response) {
-                if(response.isSuccessful()){
-
-                    misActividadesMLD.postValue(response.body());
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Participante>> call, Throwable t) {
-                Log.d("salida huesped",t.getMessage());
-            }
-        });*/
-
-
+    public LiveData<List<Actividad>> getSuActividadMutableLiveData(){
+        if(suActividadMutableLiveData==null){
+            suActividadMutableLiveData=new MutableLiveData<>();
+        }
+        return suActividadMutableLiveData;
     }
 
-    public List<Actividad> obtenerMisActividades() {
-        int x = 0;
-        List<Actividad> esta = new ArrayList<>();
-
-        if(participaciones!=null) {
-
-            while (x < participaciones.size()) {
-
-                if(participaciones.get(x).getEstadoParticipante()==1)
-                {  esta.add(participaciones.get(x).getActividad());}
-
-
-                x += 1;
-            }
-
-        } return esta;
-    }
-
-    public List<Actividad> obtenerDisponibles() {
-        Call<List<Actividad>> dato = ApiClient.getMyApiClient().getActividadesDisponibles(
-                sp.getString("token", ""));
+    public void obtenerMisActividades() {
+        Call<List<Actividad>> dato= ApiClient.getMyApiClient().getMisActividades(sp.getString("token",""));
         dato.enqueue(new Callback<List<Actividad>>() {
             @Override
             public void onResponse(Call<List<Actividad>> call, Response<List<Actividad>> response) {
-                if (response.isSuccessful()) {
-                    actividadesMutableLiveData.postValue(response.body());
-                    dispoActividades=response.body();
-                } else {
-                    new ShowToast(context, response.message() + ". Problema al obtener actividades disponibles");
+                if(!response.body().isEmpty()){
+                    for (Actividad a: response.body()) {
+                        misActividades.add(a);
+                    }
+                    Log.d("tamaño",misActividades.size()+"");
+                    miActividadMutableLiveData.postValue(misActividades);
                 }
             }
 
             @Override
             public void onFailure(Call<List<Actividad>> call, Throwable t) {
-                Log.d("error", t.getMessage());
+                Log.d("error",t.getMessage());
             }
         });
-        return dispoActividades;
     }
 
-
-    //TRUE METHODS
-    public void trueMisActividades() {
-        Call<List<Actividad>> dato = ApiClient.getMyApiClient().getMisActividades(sp.getString("token",""));
+    public void obtenerActividadesDisponibles() {
+        Call<List<Actividad>> dato= ApiClient.getMyApiClient().getActividadesDisponibles(sp.getString("token",""));
         dato.enqueue(new Callback<List<Actividad>>() {
             @Override
             public void onResponse(Call<List<Actividad>> call, Response<List<Actividad>> response) {
-                if (response.isSuccessful()) {
-                   actividadesMutableLiveData.postValue(response.body());
-                } else {
-                    Toast.makeText(getApplication(),"error al cargar Actividades", Toast.LENGTH_LONG);
+                if(!response.body().isEmpty()){
+                    dispoActividades=new ArrayList<>();
+                    for (Actividad a: response.body()) {
+
+                        dispoActividades.add(a);
+                    }
+                    miActividadMutableLiveData.postValue(dispoActividades);
                 }
             }
 
             @Override
             public void onFailure(Call<List<Actividad>> call, Throwable t) {
-                Toast.makeText(getApplication(),t.getMessage(), Toast.LENGTH_LONG);
+                Log.d("error",t.getMessage());
             }
         });
     }
+
 
 }
 

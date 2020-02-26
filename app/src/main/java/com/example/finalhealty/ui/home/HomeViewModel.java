@@ -3,6 +3,7 @@ package com.example.finalhealty.ui.home;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -31,187 +32,111 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeViewModel extends AndroidViewModel {
-    public static List<Participante> participaciones;
-    public static List<Actividad> misActividades;
-    public static List<Actividad> dispoActividades;
-    public static List<InscripcionAEvento> inscripcionesAEventos;
-    public static List<Evento> misEventos;
-    public static List<Evento> eventosDisponibles;
-    public static Evento mostrarEvento;
-    private MutableLiveData<Actividad> actividadMutableLiveData;
-    public static List<Actividad> shortAct;
-    MutableLiveData<Usuario> usuarioMutableLiveData;
-    Context context;
-    SharedPreferences sp;
+    private List<Actividad> misActividades=new ArrayList<>();
+    private List<Evento> misEventos=new ArrayList<>();
+    private List<Evento> eventosDisponibles=new ArrayList<>();
+
+    private MutableLiveData<List<Actividad>> miActividadMutableLiveData;
+    private MutableLiveData<List<Evento>> miEventoMutableLiveData;
+    private MutableLiveData<List<Evento>> suEventoMutableLiveData;
+
+    private Context context;
+    private SharedPreferences sp;
+
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
         context=application.getApplicationContext();
-        sp= context.getSharedPreferences("token",0);
+        sp=context.getSharedPreferences("token",0);
+
     }
 
 
-    public MutableLiveData<Usuario> getUsuarioMutableLiveData(){
-        if(usuarioMutableLiveData==null){
-            usuarioMutableLiveData=new MutableLiveData<>();
+
+    public LiveData<List<Actividad>> getMiActividadMutableLiveData(){
+        if(miActividadMutableLiveData==null){
+            miActividadMutableLiveData=new MutableLiveData<>();
         }
-
-
-        if(participaciones==null){participaciones=obtenerParticipantes();}
-
-        misActividades=obtenerMisActividades();
-        dispoActividades=obtenerDisponibles();
-        shortAct=reducir();
-
-
-        if(inscripcionesAEventos==null){inscripcionesAEventos=obtenerInscripcionAEventos();}
-
-        misEventos=obtenerMisEventos(inscripcionesAEventos);
-        eventosDisponibles=obtenerEventosDisponibes(inscripcionesAEventos);
-        mostrarEvento=obtenerEventoHome(misEventos);
-        return usuarioMutableLiveData;
+        return miActividadMutableLiveData;
     }
 
-
-
-    public LiveData<Actividad> getActividadesMutableLiveData(){
-        if(actividadMutableLiveData==null){
-            actividadMutableLiveData=new MutableLiveData<>();
+    public LiveData<List<Evento>> getMisEventosMLD(){
+        if(miEventoMutableLiveData==null){
+            miEventoMutableLiveData=new MutableLiveData<>();
         }
-        return actividadMutableLiveData;
+        return miEventoMutableLiveData;
     }
-    public List<Participante> obtenerParticipantes() {
-        //FALSE METHOD
+
+    public LiveData<List<Evento>> getSusEventosMLD(){
+        if(suEventoMutableLiveData==null){
+            suEventoMutableLiveData=new MutableLiveData<>();
+        }
+        return suEventoMutableLiveData;
+    }
 
 
-
-        //TRUE METHOD : obtener participantes donde idParticipante == user.id Y estado==1
-
-        /*String parametro="[{\"id\":\""+"\" ,\"password\":\""+"\"}]";
-        Call<List<Participante>> dato= ApiClient.getMyApiClient().listarParticipacion(parametro);
-        dato.enqueue(new Callback<List<Participante>>() {
+    public void obtenerMisActividades() {
+        Call<List<Actividad>> dato= ApiClient.getMyApiClient().getMisActividades(sp.getString("token",""));
+        dato.enqueue(new Callback<List<Actividad>>() {
             @Override
-            public void onResponse(Call<List<Participante>> call, Response<List<Participante>> response) {
-                if(response.isSuccessful()){
-
-                    misActividadesMLD.postValue(response.body());
-
+            public void onResponse(Call<List<Actividad>> call, Response<List<Actividad>> response) {
+                if(!response.body().isEmpty()){
+                    for (Actividad a: response.body()) {
+                        misActividades.add(a);
+                    }
+                    Log.d("tamaño",misActividades.size()+"");
+                    miActividadMutableLiveData.postValue(misActividades);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Participante>> call, Throwable t) {
-                Log.d("salida huesped",t.getMessage());
+            public void onFailure(Call<List<Actividad>> call, Throwable t) {
+                Log.d("error",t.getMessage());
             }
-        });*/
-
-        List<Participante> esta = new ArrayList<>();
-        return esta;
-
-
+        });
     }
 
-    public List<Actividad> obtenerMisActividades() {
-        int x = 0;
-        List<Actividad> esta = new ArrayList<>();
+    public void obtenerMisEventos(){
+        Call<List<Evento>> dato= ApiClient.getMyApiClient().getMisEventos(sp.getString("token",""));
+        dato.enqueue(new Callback<List<Evento>>() {
+            @Override
+            public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
+                if(!response.body().isEmpty()){
+                    misEventos=new ArrayList<>();
+                    for (Evento e: response.body()) {
 
-        if(participaciones!=null&& participaciones.size()!=0) {
-
-            while (x < participaciones.size()) {
-
-                if(participaciones.get(x).getEstadoParticipante()==1)
-                {  esta.add(participaciones.get(x).getActividad());}
-
-
-                x += 1;
+                        misEventos.add(e);
+                    }
+                    miEventoMutableLiveData.postValue(misEventos);
+                }
             }
 
-        } return esta;
+            @Override
+            public void onFailure(Call<List<Evento>> call, Throwable t) {
+
+            }
+        });
     }
+    public void obtenerEventosDisponibes (){
+        Call<List<Evento>> dato= ApiClient.getMyApiClient().getEventosDisponibles(sp.getString("token",""));
+        dato.enqueue(new Callback<List<Evento>>() {
+            @Override
+            public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
+                if(!response.body().isEmpty()){
+                    eventosDisponibles=new ArrayList<>();
+                    for (Evento e: response.body()) {
 
-    public List<Actividad> obtenerDisponibles() {
-        int x = 0;
-        List<Actividad> otra = new ArrayList<>();
-
-        if(participaciones!=null&& participaciones.size()!=0) {
-
-            while (x < participaciones.size()) {
-
-                if(participaciones.get(x).getEstadoParticipante()==0)
-                {  otra.add(participaciones.get(x).getActividad());}
-
-
-                x += 1;
+                        eventosDisponibles.add(e);
+                    }
+                    suEventoMutableLiveData.postValue(eventosDisponibles);
+                }
             }
 
-        } return otra;
+            @Override
+            public void onFailure(Call<List<Evento>> call, Throwable t) {
+
+            }
+        });
     }
-    public List<Actividad> reducir(){
-
-        List<Actividad> s = new ArrayList<>();
-        if(misActividades!=null){
-            int x=0;
-            while (x<misActividades.size()&& x<3){
-
-                s.add(misActividades.get(x));x+=1;}
-        }
-
-        return s;
-    }
-
-    public List<InscripcionAEvento> obtenerInscripcionAEventos(){
-        //OBTENER TODAS LAS INSCRIPCIONES A EVENTOS, ORDENADAS POR FECHA DE EVENTO
-        List<InscripcionAEvento> ins = new ArrayList<>();
-
-        return ins;
-    }
-
-    public List<Evento> obtenerMisEventos(@NotNull List<InscripcionAEvento> lista){
-        List<Evento> e= new ArrayList<>();
-
-        for(int x=0;x<lista.size();x++){
-            if(lista.get(x).getEstadoInscripcion()==1){ e.add(lista.get(x).getEvento());}
-        }
-        return e;
-    }
-    public List<Evento> obtenerEventosDisponibes (@NotNull List<InscripcionAEvento> lis){
-        List<Evento> e= new ArrayList<>();
-
-        for(int x=0;x<lis.size();x++){
-
-            if(lis.get(x).getEstadoInscripcion()==0){ e.add(lis.get(x).getEvento());}
-        }
-        return e;
-    }
-
-
-    public Evento obtenerEventoHome(List<Evento> eventos){
-        Evento e=null;
-
-       if(eventos!=null&&eventos.size()!=0){
-        e=eventos.get(0);
-           try{
-               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // here set the pattern as you date in string was containing like date/month/year
-               Date d1 = sdf.parse(e.getFechaHora());
-
-
-               for (int x=0;x< eventos.size();x++) {
-                   Date d2 = sdf.parse(eventos.get(x).getFechaHora());
-                   if(d1.after(d2)){
-                       e=eventos.get(x);
-                   }
-               }
-
-           }catch(ParseException ex){
-               // handle parsing exception if date string was different from the pattern applying into the SimpleDateFormat contructor
-           }
-        }
-       return e;
-    }
-
-
-
-
-
 
 }

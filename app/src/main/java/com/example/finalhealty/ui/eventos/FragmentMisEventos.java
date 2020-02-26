@@ -23,11 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentMisEventos extends Fragment {
-    public static List<Evento> MisEventos= HomeViewModel.misEventos;
+    //public static List<Evento> MisEventos= HomeViewModel.misEventos;
     View v;
     public FragmentMisEventos() {
     }
-
+/*
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -120,5 +120,5 @@ public class FragmentMisEventos extends Fragment {
         return esta;
     }
 
-
+*/
 }

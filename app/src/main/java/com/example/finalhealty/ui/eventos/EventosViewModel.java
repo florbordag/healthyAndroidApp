@@ -36,12 +36,12 @@ public class EventosViewModel extends AndroidViewModel {
         super(application);
         context=application.getApplicationContext();
     }
-
+/*
     public LiveData<Usuario> getPropietarioMutableLiveData(){
         if(usuarioMutableLiveData==null){
             usuarioMutableLiveData=new MutableLiveData<>();
 
-            if(inscripcionesAEventos==null){inscripcionesAEventos= HomeViewModel.inscripcionesAEventos;}
+            //if(inscripcionesAEventos==null){inscripcionesAEventos= HomeViewModel.inscripcionesAEventos;}
 
         misEventos=HomeViewModel.misEventos;
         eventosDisponibles=HomeViewModel.eventosDisponibles;
@@ -72,5 +72,5 @@ public class EventosViewModel extends AndroidViewModel {
         });
     }
 
-
+*/
 }

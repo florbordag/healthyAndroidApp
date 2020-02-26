@@ -1,20 +1,52 @@
 package com.example.finalhealty.model;
 
 public class Evento {
-    private int idEvento;
+    private int id;
+    private int actividadId;
     private Actividad actividad;
-    private Predio predio;
     private String fechaHora;
-    private int estadoEvento;
+    private int estado;
     private String titulo;
     private String descripcion;
+    private String fechaUltMod;
 
-    public int getIdEvento() {
-        return idEvento;
+    public Evento() {
     }
 
-    public void setIdEvento(int idEvento) {
-        this.idEvento = idEvento;
+    public Evento(int id, int actividadId, String fechaHora, int estado, String titulo, String descripcion, String fechaUltMod) {
+        this.id = id;
+        this.actividadId = actividadId;
+        this.fechaHora = fechaHora;
+        this.estado = estado;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaUltMod = fechaUltMod;
+    }
+
+    public Evento(int id, Actividad actividad, String fechaHora, int estado, String titulo, String descripcion, String fechaUltMod) {
+        this.id = id;
+        this.actividad = actividad;
+        this.fechaHora = fechaHora;
+        this.estado = estado;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaUltMod = fechaUltMod;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getActividadId() {
+        return actividadId;
+    }
+
+    public void setActividadId(int actividadId) {
+        this.actividadId = actividadId;
     }
 
     public Actividad getActividad() {
@@ -25,14 +57,6 @@ public class Evento {
         this.actividad = actividad;
     }
 
-    public Predio getPredio() {
-        return predio;
-    }
-
-    public void setPredio(Predio predio) {
-        this.predio = predio;
-    }
-
     public String getFechaHora() {
         return fechaHora;
     }
@@ -41,12 +65,12 @@ public class Evento {
         this.fechaHora = fechaHora;
     }
 
-    public int getEstadoEvento() {
-        return estadoEvento;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setEstadoEvento(int estadoEvento) {
-        this.estadoEvento = estadoEvento;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public String getTitulo() {
@@ -65,22 +89,25 @@ public class Evento {
         this.descripcion = descripcion;
     }
 
-    public Evento(int idEvento, Actividad actividad, Predio predio, String fechaHora, int estadoEvento, String titulo, String descripcion) {
-        this.idEvento = idEvento;
-        this.actividad = actividad;
-        this.predio = predio;
-        this.fechaHora = fechaHora;
-        this.estadoEvento = estadoEvento;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
+    public String getFechaUltMod() {
+        return fechaUltMod;
     }
 
-    public Evento() {
+    public void setFechaUltMod(String fechaUltMod) {
+        this.fechaUltMod = fechaUltMod;
     }
 
-    public String toString(){
-        String user=  getIdEvento() + ","+getActividad().getNombreActividad()+","+getPredio().getNombre()+","+getFechaHora()+","+getEstadoEvento()+","+getTitulo()+","+getDescripcion();
-        return user;
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "id=" + id +
+                ", actividadId=" + actividadId +
+                ", actividad=" + actividad +
+                ", fechaHora='" + fechaHora + '\'' +
+                ", estado=" + estado +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaUltMod='" + fechaUltMod + '\'' +
+                '}';
     }
-
 }

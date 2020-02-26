@@ -17,16 +17,17 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.finalhealty.R;
 import com.example.finalhealty.model.Usuario;
 import com.example.finalhealty.ui.ViewPagerAdapter;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 
 
 public class ActividadesFragment extends Fragment {
 
     private ActividadesViewModel actividadesViewModel;
-    private TabLayout tabLayout;
     private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private AppBarLayout appBar;
     private ViewPagerAdapter adapter;
-    private Usuario user;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,34 +36,20 @@ public class ActividadesFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_actividades, container, false);
 
 
-        tabLayout= (TabLayout) root.findViewById(R.id.tabLayout);
-        viewPager = (ViewPager) root.findViewById(R.id.view_pager);
-        adapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPager=root.findViewById(R.id.viewPager);
+        appBar=root.findViewById(R.id.appBar);
+        tabLayout=new TabLayout(getContext());
 
+        appBar.addView(tabLayout);
 
-
-       actividadesViewModel.getUserMutableLiveData().observe(this, new Observer<Usuario>() {
-            @Override
-            public void onChanged(Usuario usuario) {
-                user = usuario;
-
-            }
-        });
-
-
+        adapter=new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new FragmentMisActividades(),"MIAS");
         adapter.addFragment(new FragmentActividadesDisponibles(), "DISPONIBLES");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-
-
-       // Toast.makeText(getActivity(), misActivi.get(0).getNombreActividad()+"", Toast.LENGTH_LONG).show();
-
-
         return root;
     }
-
 
 }

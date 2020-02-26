@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.model.Actividad;
@@ -23,9 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentActividadesDisponibles extends Fragment {
-    Actividad quitarAct=null;
     ActividadesViewModel actividadesViewModel;
     View v ;
+
     public FragmentActividadesDisponibles() {
     }
 
@@ -34,14 +36,24 @@ public class FragmentActividadesDisponibles extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v=inflater.inflate(R.layout.frag_dispoactividades, container, false);
 
-        List<Actividad> actividadesDisponibles=actividadesViewModel.obtenerDisponibles();
-        ArrayAdapter<Actividad> adapter =new ActividadAdapter(getContext(), R.layout.itemactiviti,actividadesDisponibles, getLayoutInflater() );
-        ListView lv = v.findViewById(R.id.listaDeActividadesDisponibles);
-        lv.setAdapter(adapter);
+        cargarActividades(v);
+        actividadesViewModel.obtenerActividadesDisponibles();
 
         return v;
     }
 
+    public void cargarActividades(final View view){
+        actividadesViewModel= ViewModelProviders.of(this).get(ActividadesViewModel.class);
+        actividadesViewModel.getSuActividadMutableLiveData().observe(this, new Observer<List<Actividad>>() {
+            @Override
+            public void onChanged(List<Actividad> actividads) {
+                ArrayAdapter<Actividad> adapter =new ActividadAdapter(getContext(),R.layout.itemactiviti, actividads, getLayoutInflater() );
+                ListView lv = view.findViewById(R.id.listaSusActividades);
+                lv.setAdapter(adapter);
+            }
+        });
+
+    }
 
 
     //CLASE INTERNA
@@ -66,62 +78,28 @@ public class FragmentActividadesDisponibles extends Fragment {
             }
             final Actividad actividad=actividadList.get(position);
             TextView nombre= itemView.findViewById(R.id.name);
-            nombre.setText(actividad.getNombreActividad());
+            nombre.setText(actividad.getTitulo());
             TextView descripcion=itemView.findViewById(R.id.descripcion);
-            descripcion.setText(actividad.getDescripcionActividad());
+            descripcion.setText(actividad.getDescripcion());
             TextView horario=itemView.findViewById(R.id.tvHorario);
             horario.setText(actividad.getHorario());
-           Button button= itemView.findViewById(R.id.btnAbandonar);
+            Button button= itemView.findViewById(R.id.btnAbandonar);
             button.setText("Inscribirse");
-
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   Toast.makeText(getActivity(), "Inscribirse a   "+ actividad.getNombreActividad(),Toast.LENGTH_LONG).show();
+                   Toast.makeText(getActivity(), "Inscribirse a   "+ actividad.getTitulo(),Toast.LENGTH_LONG).show();
 
-                   InscribirYreordenar(actividad);
+                   //InscribirYreordenar(actividad);
 
                 }
 
             });
 
-
-
             return itemView;
         }
     }
 
-
-    public List<Actividad> InscribirYreordenar(Actividad actividad) {
-
-        List<Actividad> esta = new ArrayList<>();
-
-        if(HomeViewModel.participaciones!=null &&HomeViewModel.participaciones.size()!=0) {
-            int x = 0;
-                while (x < HomeViewModel.participaciones.size()) {
-
-                    if(HomeViewModel.participaciones.get(x).getActividad().getIdActividad()==actividad.getIdActividad())
-                    {
-                        HomeViewModel.participaciones.get(x).setEstadoParticipante(1); }
-                   // else{Participante pp= new Participante(MainViewModel.user, actividad,"20/02/2020",1);
-                     //   ActividadesViewModel.participaciones.add(pp);}
-                    x += 1;
-                }
-
-
-            if(HomeViewModel.dispoActividades.contains(actividad)) {
-                HomeViewModel.dispoActividades.remove(actividad);}
-
-            //actividades=HomeViewModel.dispoActividades;
-
-            HomeViewModel.misActividades.add(actividad);
-
-
-        }
-
-        esta= HomeViewModel.dispoActividades;
-        return esta;
-    }
 
 }

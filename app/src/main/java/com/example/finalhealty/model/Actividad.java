@@ -1,25 +1,52 @@
 package com.example.finalhealty.model;
 
 public class Actividad {
-    private int idActividad;
-    private String nombreActividad;
+    private int id;
+    private String nombre;
     private String horario;
-    private String descripcionActividad;
-    private String fechaUltModActividad;
-    private int estadoActividad;
-    private Usuario coordinadorActividad;
+    private String descripcion;
+    private String fechaUltMod;
+    private String estado;
+    private String coordinadorId;
+    private Usuario Coordinador;
 
     public Actividad() {
     }
 
-    public Actividad(int idActividad, String nombreActividad, String horario, String descripcionActividad, String fechaUltModActividad, int estadoActividad, Usuario coordinadorActividad) {
-        this.idActividad = idActividad;
-        this.nombreActividad = nombreActividad;
+    public Actividad(int id, String nombre, String horario, String descripcion, String fechaUltMod, String estado, String coordinadorId) {
+        this.id = id;
+        this.nombre = nombre;
         this.horario = horario;
-        this.descripcionActividad = descripcionActividad;
-        this.fechaUltModActividad = fechaUltModActividad;
-        this.estadoActividad = estadoActividad;
-        this.coordinadorActividad = coordinadorActividad;
+        this.descripcion = descripcion;
+        this.fechaUltMod = fechaUltMod;
+        this.estado = estado;
+        this.coordinadorId = coordinadorId;
+    }
+
+    public Actividad(int id, String nombre, String horario, String descripcion, String fechaUltMod, String estado, Usuario coordinador) {
+        this.id = id;
+        this.nombre = nombre;
+        this.horario = horario;
+        this.descripcion = descripcion;
+        this.fechaUltMod = fechaUltMod;
+        this.estado = estado;
+        Coordinador = coordinador;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return nombre;
+    }
+
+    public void setTitulo(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getHorario() {
@@ -30,51 +57,57 @@ public class Actividad {
         this.horario = horario;
     }
 
-    public int getIdActividad() {
-        return idActividad;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setIdActividad(int idActividad) {
-        this.idActividad = idActividad;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getNombreActividad() {
-        return nombreActividad;
+    public String getFechaUltMod() {
+        return fechaUltMod;
     }
 
-    public void setNombreActividad(String nombreActividad) {
-        this.nombreActividad = nombreActividad;
+    public void setFechaUltMod(String fechaUltMod) {
+        this.fechaUltMod = fechaUltMod;
     }
 
-    public String getDescripcionActividad() {
-        return descripcionActividad;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setDescripcionActividad(String descripcionActividad) {
-        this.descripcionActividad = descripcionActividad;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public String getFechaUltModActividad() {
-        return fechaUltModActividad;
+    public String getCoordinadorId() {
+        return coordinadorId;
     }
 
-    public void setFechaUltModActividad(String fechaUltModActividad) {
-        this.fechaUltModActividad = fechaUltModActividad;
+    public void setCoordinadorId(String coordinadorId) {
+        this.coordinadorId = coordinadorId;
     }
 
-    public int getEstadoActividad() {
-        return estadoActividad;
+    public Usuario getCoordinador() {
+        return Coordinador;
     }
 
-    public void setEstadoActividad(int estadoActividad) {
-        this.estadoActividad = estadoActividad;
+    public void setCoordinador(Usuario coordinador) {
+        Coordinador = coordinador;
     }
 
-    public Usuario getCoordinadorActividad() {
-        return coordinadorActividad;
-    }
-
-    public void setCoordinadorActividad(Usuario coordinadorActividad) {
-        this.coordinadorActividad = coordinadorActividad;
+    @Override
+    public String toString() {
+        return "Actividad{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", horario='" + horario + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaUltMod='" + fechaUltMod + '\'' +
+                ", estado='" + estado + '\'' +
+                ", CoordinadorId='" + coordinadorId + '\'' +
+                ", Coordinador=" + Coordinador +
+                '}';
     }
 }

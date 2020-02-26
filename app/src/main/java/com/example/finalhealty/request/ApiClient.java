@@ -98,9 +98,6 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         @GET("Actividad/Usuario/mi")
         Call<List<Actividad>> getActividadesDisponibles(@Header("Authorization")String token);
 
-        @FormUrlEncoded
-        @POST("ListenPostParticipantes.php")
-        Call<List<Participante>> listarParticipacion(@Field("Participante") String paramLogi);
 
         //Medallas
 
@@ -121,10 +118,6 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         //Actividades
         @GET("Actividad/Coordinador/mias")
         Call<List<Actividad>> getMisActividadesCoord(@Header("Authorization")String token);
-
-        @FormUrlEncoded
-        @POST("ListenPostActividades.php")
-        Call<List<Actividad>> listarMisActividades(@Field("Actividade") String paramLogi);
 
         @GET("Actividad/Coordinador/mi")
         Call<List<Evento>> getActividadesDisponiblesCoord(@Header("Authorization")String token);

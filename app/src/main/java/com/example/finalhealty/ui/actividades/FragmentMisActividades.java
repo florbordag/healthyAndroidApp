@@ -14,9 +14,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.model.Actividad;
+import com.example.finalhealty.ui.home.HomeFragment;
 import com.example.finalhealty.ui.home.HomeViewModel;
 
 import java.util.ArrayList;
@@ -24,9 +27,9 @@ import java.util.List;
 
 
 public class FragmentMisActividades extends Fragment {
-    public static List<Actividad> MisActividades = HomeViewModel.misActividades;
-    Actividad quitarAct=null;
-    View v;
+    private ActividadesViewModel actividadesViewModel;
+    private View v;
+
     public FragmentMisActividades() {
     }
 
@@ -34,17 +37,29 @@ public class FragmentMisActividades extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        actividadesViewModel =
+                ViewModelProviders.of(this).get(ActividadesViewModel.class);
         v = inflater.inflate(R.layout.frag_misactividades, container, false);
 
-
-        ArrayAdapter<Actividad> adapter =new ActividadAdapter(getContext(),R.layout.itemactiviti,MisActividades, getLayoutInflater() );
-        ListView lv = v.findViewById(R.id.listaMisActividades);
-        lv.setAdapter(adapter);
+        cargarActividades(v);
+        actividadesViewModel.obtenerMisActividades();
 
         return v;
     }
 
+    public void cargarActividades(final View view){
 
+        actividadesViewModel= ViewModelProviders.of(this).get(ActividadesViewModel.class);
+        actividadesViewModel.getMiActividadMutableLiveData().observe(this, new Observer<List<Actividad>>() {
+            @Override
+            public void onChanged(List<Actividad> actividads) {
+                ArrayAdapter<Actividad> adapter =new ActividadAdapter(getContext(),R.layout.itemactiviti, actividads, getLayoutInflater() );
+                ListView lv = view.findViewById(R.id.listaMisActividades);
+                lv.setAdapter(adapter);
+            }
+        });
+
+    }
 
     //CLASE INTERNA
     public class ActividadAdapter extends ArrayAdapter<Actividad> {
@@ -60,7 +75,6 @@ public class FragmentMisActividades extends Fragment {
                 this.li=li;
             }
 
-
             @NonNull
             @Override
             public View getView(final int position, @Nullable final View convertView, @NonNull ViewGroup parent) {
@@ -70,9 +84,9 @@ public class FragmentMisActividades extends Fragment {
                 }
                 final Actividad actividad=actividadList.get(position);
                 TextView nombre= itemView.findViewById(R.id.name);
-                nombre.setText(actividad.getNombreActividad());
+                nombre.setText(actividad.getTitulo());
                 TextView descripcion=itemView.findViewById(R.id.descripcion);
-                descripcion.setText(actividad.getDescripcionActividad());
+                descripcion.setText(actividad.getDescripcion());
                 TextView horario=itemView.findViewById(R.id.tvHorario);
                 horario.setText(actividad.getHorario());
                 Button button= itemView.findViewById(R.id.btnAbandonar);
@@ -81,46 +95,13 @@ public class FragmentMisActividades extends Fragment {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                      Toast.makeText(getActivity(), "Funciona   "+ actividad.getNombreActividad(),Toast.LENGTH_LONG).show();
-                        desinscribirYreordenar(actividad);
+                      Toast.makeText(getActivity(), "Funciona   "+ actividad.getTitulo(),Toast.LENGTH_LONG).show();
+                        //desinscribirYreordenar(actividad);
 
                     }});
 
                 return itemView;
             }
     }
-
-
-
-
-    public List<Actividad> desinscribirYreordenar(Actividad actividad) {
-
-        List<Actividad> esta = new ArrayList<>();
-
-        if(HomeViewModel.participaciones!=null&&HomeViewModel.participaciones.size()!=0) {
-            int x = 0;
-                    while (x < HomeViewModel.participaciones.size()) {
-
-                        if(HomeViewModel.participaciones.get(x).getActividad().getIdActividad()==actividad.getIdActividad())
-                        {
-                            HomeViewModel.participaciones.get(x).setEstadoParticipante(0); }
-
-                        x += 1;
-                    }
-
-
-            if(HomeViewModel.misActividades.contains(actividad)){
-                HomeViewModel.misActividades.remove(actividad); }
-
-                MisActividades=HomeViewModel.misActividades;
-
-            HomeViewModel.dispoActividades.add(actividad);
-
-        }
-
-        esta=HomeViewModel.misActividades;
-        return esta;
-    }
-
 
 }

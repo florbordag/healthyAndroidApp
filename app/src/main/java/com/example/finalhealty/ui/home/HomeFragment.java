@@ -2,6 +2,7 @@ package com.example.finalhealty.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.model.Actividad;
+import com.example.finalhealty.model.Evento;
 import com.example.finalhealty.model.Participante;
 import com.example.finalhealty.model.Usuario;
 import com.example.finalhealty.ui.inicio.MainActivity;
@@ -29,9 +31,8 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private Usuario user= MainActivity.usuarioReal;
-    TextView tituloEvento;
-    TextView descripEvento;
-    public static List<Participante> listaParticipante= HomeViewModel.participaciones;
+    private TextView tituloEvento;
+    private TextView descripEvento;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,30 +41,44 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        homeViewModel.getUsuarioMutableLiveData().observe(this, new Observer<Usuario>() {
-            @Override
-            public void onChanged(Usuario usuario) {
-
-
-            }
-        });
-
-        ArrayAdapter<Actividad> adapter =new ListaAdapter(getContext(),R.layout.short_item, HomeViewModel.shortAct, getLayoutInflater() );
-        ListView lv = root.findViewById(R.id.listaActividades);
-        lv.setAdapter(adapter);
-
         tituloEvento = root.findViewById(R.id.tituloProxEvento);
         descripEvento= root.findViewById(R.id.horaProxEvento);
 
+        cargarActividades(root);
+        cargarEventos(root);
 
+        homeViewModel.obtenerMisActividades();
+        homeViewModel.obtenerMisEventos();
 
-        if(HomeViewModel.mostrarEvento!=null){tituloEvento.setText(HomeViewModel.mostrarEvento.getTitulo());
-            descripEvento.setText(HomeViewModel.mostrarEvento.getFechaHora());}
-        else {tituloEvento.setText("No está inscripto en ningun evento.");}
+        return root;
+    }
 
+    public void cargarActividades(final View view){
+        homeViewModel=ViewModelProviders.of(this).get(homeViewModel.getClass());
+        homeViewModel.getMiActividadMutableLiveData().observe(this, new Observer<List<Actividad>>() {
+            @Override
+            public void onChanged(List<Actividad> actividads) {
+                ArrayAdapter<Actividad> adapter =new ListaAdapter(getContext(),R.layout.short_item, actividads, getLayoutInflater() );
+                ListView lv = view.findViewById(R.id.listaActividades);
+                lv.setAdapter(adapter);
+            }
+        });
 
+    }
+    public void cargarEventos(final View view){
+        homeViewModel=ViewModelProviders.of(this).get(homeViewModel.getClass());
+        homeViewModel.getMisEventosMLD().observe(this, new Observer<List<Evento>>() {
+            @Override
+            public void onChanged(List<Evento> eventos) {
+                if(eventos.size()>0){
+                    tituloEvento.setText(eventos.get(0).getTitulo());
+                    descripEvento.setText(eventos.get(0).getFechaHora());
+                } else {
+                    tituloEvento.setText("No está inscripto en ningun evento.");
+                }
+            }
+        });
 
-    return root;
     }
 
 
@@ -89,7 +104,7 @@ public class HomeFragment extends Fragment {
             }
             Actividad actividad=actividadList.get(position);
             Button nombre= itemView.findViewById(R.id.nameactivity);
-            nombre.setText(actividad.getNombreActividad());
+            nombre.setText(actividad.getTitulo());
             TextView horario=itemView.findViewById(R.id.tvhorarioAct);
             horario.setText(actividad.getHorario());
 
@@ -103,8 +118,6 @@ public class HomeFragment extends Fragment {
 
             return itemView;
         }
-
-
 
 
     }

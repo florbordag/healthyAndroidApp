@@ -27,11 +27,11 @@ import java.util.List;
 import okhttp3.internal.http2.Hpack;
 
 public class FragmentEventosDisponibles extends Fragment {
-    public static List<Evento> EventosDisponibles= HomeViewModel.eventosDisponibles;
+    //public static List<Evento> EventosDisponibles= HomeViewModel.eventosDisponibles;
     View v;
     public FragmentEventosDisponibles() {
     }
-
+/*
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class FragmentEventosDisponibles extends Fragment {
 
         return v;
     }
-
+/*
 
 
     //CLASE INTERNA
@@ -54,7 +54,7 @@ public class FragmentEventosDisponibles extends Fragment {
         private List<Evento> eventoList;
         private LayoutInflater li;
 
-
+/*
         public EventoAdapter(@NonNull Context context, int resource, @NonNull List<Evento> objects, LayoutInflater li) {
             super(context, resource, objects);
             this.context=context;
@@ -133,5 +133,5 @@ public class FragmentEventosDisponibles extends Fragment {
 
         esta= HomeViewModel.eventosDisponibles;
         return esta;
-    }
+    }*/
 }

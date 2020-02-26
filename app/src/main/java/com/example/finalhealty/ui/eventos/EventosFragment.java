@@ -37,7 +37,7 @@ public class EventosFragment extends Fragment {
         viewPager = (ViewPager) root.findViewById(R.id.view_pagerEventos);
         adapter = new ViewPagerAdapter(getChildFragmentManager());
 
-
+/*
         eventosViewModel.getPropietarioMutableLiveData().observe(this, new Observer<Usuario>() {
             @Override
             public void onChanged(@Nullable Usuario usuario) {
@@ -45,10 +45,10 @@ public class EventosFragment extends Fragment {
 
                 //fijarDatos(usuario);
             }
-        });
+        });*/
 
         adapter.addFragment(new FragmentMisEventos(),"MIS EVENTOS");
-        adapter.addFragment(new FragmentEventosDisponibles(), "EVENTOS DISPONIBLES");
+        adapter.addFragment(new FragmentEventosDisponibles(), "DISPONIBLES");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
