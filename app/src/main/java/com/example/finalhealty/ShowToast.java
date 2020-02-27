@@ -12,7 +12,7 @@ public class ShowToast {
         Toast toast = Toast.makeText(context, info, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER,0,0);
         View view = toast.getView();
-        view.setBackgroundColor(Color.parseColor("#FFF000"));
+        view.setBackgroundColor(Color.parseColor("#F5BCA9"));
         TextView text = view.findViewById(android.R.id.message);
         text.setTextColor(Color.BLACK);
         text.setPadding(100, 15, 100, 15);
