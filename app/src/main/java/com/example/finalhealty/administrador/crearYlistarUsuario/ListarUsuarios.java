@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -79,6 +80,8 @@ private UsuarioMainViewModel usuarioMainViewModel;
                 itemView=li.inflate(R.layout.itemusuario,parent,false);
             }
             final Usuario usuario=usuarioList.get(position);
+            ImageView icono= itemView.findViewById(R.id.iconoTipoUsuario);
+
             TextView nombre= itemView.findViewById(R.id.tvNombreListarUser);
             nombre.setText(usuario.getNombre()+" "+usuario.getApellido());
             TextView mail=itemView.findViewById(R.id.tvMailListarUser);
@@ -87,12 +90,15 @@ private UsuarioMainViewModel usuarioMainViewModel;
 
             if(usuario.getRol().equals("Administrador")){
                 background.setBackgroundColor(getResources().getColor(R.color.backgroundAdmin));
+               icono.setImageResource(R.drawable.user_otro);
             }
             else if(usuario.getRol().equals("Coordinador")){
                 background.setBackgroundColor(getResources().getColor(R.color.backgroundCoor));
+                icono.setImageResource(R.drawable.user_otromas);
             }
             else if(usuario.getRol().equals("Usuario")){
                 background.setBackgroundColor(getResources().getColor(R.color.backgroundUser));
+                icono.setImageResource(R.drawable.user_generic);
             }
 
 
