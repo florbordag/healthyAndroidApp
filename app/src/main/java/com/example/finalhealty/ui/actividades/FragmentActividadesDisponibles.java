@@ -97,8 +97,8 @@ public class FragmentActividadesDisponibles extends Fragment {
                 @Override
                 public void onClick(View view) {
                     new AlertDialog.Builder(getContext())
-                            .setTitle("Cerrar sesion")
-                            .setMessage("¿Desea abandonar de la aplicacion?")
+                            .setTitle("Participar")
+                            .setMessage("¿Desea participar de esta actividad?")
                             .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

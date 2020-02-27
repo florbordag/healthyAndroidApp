@@ -25,6 +25,7 @@ import retrofit2.Response;
 public class CordActiViewModel extends AndroidViewModel {
     private Context context;
     private String token;
+    private int respuesta;
     private SharedPreferences sp;
 
     private List<Actividad> misActividades;
@@ -103,6 +104,21 @@ public class CordActiViewModel extends AndroidViewModel {
 
     public void eliminarActividad(){
 
+    }
+
+    public void crearActividad(Actividad a){
+        Call<Actividad> dato=ApiClient.getMyApiClient().crearActividad(token,a.getTitulo(),a.getDescripcion(),a.getHorario());
+        dato.enqueue(new Callback<Actividad>() {
+            @Override
+            public void onResponse(Call<Actividad> call, Response<Actividad> response) {
+                new ShowToast(context,"La actividad se creo con éxito");
+            }
+
+            @Override
+            public void onFailure(Call<Actividad> call, Throwable t) {
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
+            }
+        });
     }
 
 

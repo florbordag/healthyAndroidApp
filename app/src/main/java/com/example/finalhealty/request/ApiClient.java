@@ -147,6 +147,13 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
                 @Path("id") int id,
                 @Body Actividad actividad);
 
+        @POST("Actividad")
+        Call<Actividad> crearActividad(
+                @Header("Authorization")String token,
+                @Query("Nombre") String nombre,
+                @Query("Descripcion") String descripcion,
+                @Query("Horario") String horario);
+
 
         ///////ADMINISTRADORES////////
 
