@@ -43,7 +43,7 @@ public class cord_eventos extends Fragment {
         adapter=new ViewPagerAdapter(getChildFragmentManager());
 
         adapter.addFragment(new CrearEvento(),"NUEVO EVENTO");
-        //adapter.addFragment(new (),"MIS EVENTOS");
+        adapter.addFragment(new FragMisEventos(),"MIS EVENTOS");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
