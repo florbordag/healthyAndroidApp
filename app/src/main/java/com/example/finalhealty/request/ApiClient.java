@@ -28,7 +28,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
-    private static final String PATH="https://healthy2020.conveyor.cloud/Api/";
+    private static final String PATH="https://healthy2020.conveyor.cloud/";    //http://10.75.220.46:45455/Api/";
     private static  MyApiInterface myApiInteface;
 
     public static MyApiInterface getMyApiClient(){
@@ -160,15 +160,23 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         @POST("Usuario")
         Call<Usuario> crearUsuario(@Header("Authorization")String token, @Body Usuario usuario);
 
+        @GET("Usuario/Administradores")
+        Call<List<Usuario>> todes(@Header("Authorization")String token);
+
         //Eventos
         @GET("Evento")
         Call<List<Evento>> getEventos(@Header("Authorization")String token);
 
         //Actividades
-        @GET("Actividad")
+        @GET("Actividad/Admin")
         Call<List<Actividad>> getActividades(@Header("Authorization")String token);
 
+
+
         //////////ESTADISTICAS//////////
+
+        @GET("Usuario/Coordinadores")
+        Call<Integer> total(@Header("Authorization")String token);
 
 
 

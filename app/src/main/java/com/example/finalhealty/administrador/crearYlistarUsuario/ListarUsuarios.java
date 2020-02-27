@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,29 +25,33 @@ import android.widget.TextView;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.administrador.AdminMain;
+import com.example.finalhealty.administrador.Home.HomeAdminViewModel;
 import com.example.finalhealty.coordinador.ui.coordmain.actividades.FragMisActividades;
 import com.example.finalhealty.model.Actividad;
 import com.example.finalhealty.model.Usuario;
+import com.example.finalhealty.ui.home.HomeViewModel;
 
 import java.util.List;
 
 
 public class ListarUsuarios extends Fragment {
-private UsuarioMainViewModel usuarioMainViewModel;
+    private UsuarioMainViewModel usuarioMainViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ViewModelProviders.of(this).get(UsuarioMainViewModel.class);
+        usuarioMainViewModel=ViewModelProviders.of(this).get(UsuarioMainViewModel.class);
         View root = inflater.inflate(R.layout.fragment_listar_usuarios, container, false);
         ((AdminMain) getActivity()).setActionBarTitle("ADMIN - Listar Usuarios");
 
-       // cargarUsuarios(root);
 
+        cargarUsuarios(root);
+        usuarioMainViewModel.obtenerUsuarios();
 
         return root;
     }
 
     public void cargarUsuarios(final View view){
+
         usuarioMainViewModel.getUsuariosMLD().observe(this, new Observer<List<Usuario>>() {
             @Override
             public void onChanged(List<Usuario> users) {
@@ -88,19 +93,20 @@ private UsuarioMainViewModel usuarioMainViewModel;
             mail.setText(usuario.getMail());
             LinearLayout background = itemView.findViewById(R.id.backgrounditem);
 
-            if(usuario.getRol().equals("Administrador")){
-                background.setBackgroundColor(getResources().getColor(R.color.backgroundAdmin));
-               icono.setImageResource(R.drawable.user_otro);
+            switch (usuario.getRol()){
+                case "Administrador":
+                    background.setBackgroundColor(getResources().getColor(R.color.backgroundAdmin));
+                    icono.setImageResource(R.drawable.user_otro);
+                    break;
+                case "Coordinador":
+                    background.setBackgroundColor(getResources().getColor(R.color.backgroundCoor));
+                    icono.setImageResource(R.drawable.user_otromas);
+                    break;
+                case "Usuario":
+                    background.setBackgroundColor(getResources().getColor(R.color.backgroundUser));
+                    icono.setImageResource(R.drawable.user_generic);
+                    break;
             }
-            else if(usuario.getRol().equals("Coordinador")){
-                background.setBackgroundColor(getResources().getColor(R.color.backgroundCoor));
-                icono.setImageResource(R.drawable.user_otromas);
-            }
-            else if(usuario.getRol().equals("Usuario")){
-                background.setBackgroundColor(getResources().getColor(R.color.backgroundUser));
-                icono.setImageResource(R.drawable.user_generic);
-            }
-
 
             return itemView;
         }

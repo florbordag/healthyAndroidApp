@@ -3,7 +3,7 @@
     <color name="colorPrimary">#F44336</color>
     <color name="colorPrimaryDark">#F44336</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="backgroundAdmin">#BAD81B60</color>
-    <color name="backgroundCoor">#B2FFEB3B</color>
-    <color name="backgroundUser">#B54CAF50</color>
+    <color name="backgroundAdmin">#FFDAB3</color>
+    <color name="backgroundCoor">#FFE5CB</color>
+    <color name="backgroundUser">#FCE6DB</color>
 </resources>

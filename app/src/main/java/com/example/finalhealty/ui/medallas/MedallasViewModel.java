@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.finalhealty.ShowToast;
 import com.example.finalhealty.model.MedallaVirtual;
 import com.example.finalhealty.request.ApiClient;
 import com.example.finalhealty.ui.inicio.MainActivity;
@@ -25,7 +26,7 @@ public class MedallasViewModel extends AndroidViewModel {
     private MutableLiveData<List<MedallaVirtual>> medallasMLD;
     private SharedPreferences sp;
     private String token;
-    private List<MedallaVirtual> obtenidas=new ArrayList<>();
+    private List<MedallaVirtual> obtenidas;
 
     public MedallasViewModel(@NonNull Application application) {
         super(application);
@@ -47,19 +48,18 @@ public class MedallasViewModel extends AndroidViewModel {
         dato.enqueue(new Callback<List<MedallaVirtual>>() {
             @Override
             public void onResponse(Call<List<MedallaVirtual>> call, Response<List<MedallaVirtual>> response) {
-                if(!response.body().isEmpty()){
+                if(!response.body().isEmpty()&&getMedallasMLD()!=null){
+                    obtenidas=new ArrayList<>();
                     for(MedallaVirtual m: response.body()){
                         obtenidas.add(m);
                     }
-                    if(getMedallasMLD()!=null){
-                        medallasMLD.postValue(obtenidas);
-                    }
+                    medallasMLD.postValue(obtenidas);
                 }
             }
 
             @Override
             public void onFailure(Call<List<MedallaVirtual>> call, Throwable t) {
-
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
 
