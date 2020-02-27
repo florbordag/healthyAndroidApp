@@ -3,8 +3,6 @@ package com.example.finalhealty.ui.eventos;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -12,10 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.finalhealty.model.Evento;
-import com.example.finalhealty.model.InscripcionAEvento;
-import com.example.finalhealty.model.Usuario;
 import com.example.finalhealty.request.ApiClient;
-import com.example.finalhealty.ui.home.HomeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +21,8 @@ import retrofit2.Response;
 
 public class EventosViewModel extends AndroidViewModel {
     private Context context;
+    private String token;
+    private int inscripcion;
 
     private List<Evento> misEventos=new ArrayList<>();
     private List<Evento> eventosDisponibles=new ArrayList<>();
@@ -40,6 +37,7 @@ public class EventosViewModel extends AndroidViewModel {
 
         context=application.getApplicationContext();
         sp=context.getSharedPreferences("token",0);
+        token=sp.getString("token","");
 
     }
 
@@ -58,7 +56,7 @@ public class EventosViewModel extends AndroidViewModel {
     }
 
     public void obtenerMisEventos(){
-        Call<List<Evento>> dato= ApiClient.getMyApiClient().getMisEventos(sp.getString("token",""));
+        Call<List<Evento>> dato= ApiClient.getMyApiClient().getMisEventos(token);
         dato.enqueue(new Callback<List<Evento>>() {
             @Override
             public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
@@ -81,7 +79,7 @@ public class EventosViewModel extends AndroidViewModel {
         });
     }
     public void obtenerEventosDisponibes (){
-        Call<List<Evento>> dato= ApiClient.getMyApiClient().getEventosDisponibles(sp.getString("token",""));
+        Call<List<Evento>> dato= ApiClient.getMyApiClient().getEventosDisponibles(token);
         dato.enqueue(new Callback<List<Evento>>() {
             @Override
             public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
@@ -102,5 +100,27 @@ public class EventosViewModel extends AndroidViewModel {
 
             }
         });
+    }
+
+    public void participar(Evento evento){
+        Call<Evento> dato= ApiClient.getMyApiClient().inscribirse(token,evento.getId());
+        dato.enqueue(new Callback<Evento>() {
+            @Override
+            public void onResponse(Call<Evento> call, Response<Evento> response) {
+                if(response.isSuccessful()){
+                    obtenerEventosDisponibes();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Evento> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    public void abandonar(Evento evento){
+        //TODO agregue su abandono aqui
     }
 }

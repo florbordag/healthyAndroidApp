@@ -1,6 +1,9 @@
 package com.example.finalhealty.coordinador.ui.coordmain.actividades;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,30 +16,45 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.model.Actividad;
+import com.example.finalhealty.ui.actividades.ActividadesViewModel;
 import com.example.finalhealty.ui.inicio.MainActivity;
 
 import java.util.List;
 
 
 public class FragMisActividades extends Fragment {
+    private CordActiViewModel cordActiViewModel;
+    private View v;
 
-    View v;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        cordActiViewModel =
+                ViewModelProviders.of(this).get(CordActiViewModel.class);
         v = inflater.inflate(R.layout.frag_misactividades, container, false);
 
-
-
-        ArrayAdapter<Actividad> adapter =new FragMisActividades.ActividadAdapter(getContext(), R.layout.itemactiviti, CordActiViewModel.mientrasTanto, getLayoutInflater() );
-        ListView lv = v.findViewById(R.id.listaMisActividades);
-        lv.setAdapter(adapter);
+        cargarActividades(v);
+        cordActiViewModel.getMisActividadesMLD();
+        cordActiViewModel.obtenerMisActividades();
 
         return v;
+    }
+
+    public void cargarActividades(final View view){
+        cordActiViewModel.getMisActividadesMLD().observe(this, new Observer<List<Actividad>>() {
+            @Override
+            public void onChanged(List<Actividad> actividads) {
+                ArrayAdapter<Actividad> adapter =new ActividadAdapter(getContext(),R.layout.itemactiviti, actividads, getLayoutInflater());
+                ListView lv = view.findViewById(R.id.listaMisActividades);
+                lv.setAdapter(adapter);
+            }
+        });
     }
 
 
@@ -74,8 +92,20 @@ public class FragMisActividades extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //accion del boton eliminar
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Cerrar sesion")
+                            .setMessage("¿Desea abandonar de la aplicacion?")
+                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    cordActiViewModel.eliminarActividad();
+                                }
+                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
+                        }
+                    }).show();
                 }});
 
             return itemView;
