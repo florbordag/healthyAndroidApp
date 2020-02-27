@@ -1,19 +1,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="nv">
+xmlns:tools="http://schemas.android.com/tools"
+tools:showIn="nv">
 
-        <item
-            android:id="@+id/cord_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
-        <item
-            android:id="@+id/cord_actividades"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_actividades" />
-        <item
-            android:id="@+id/cord_eventos"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_eventos" />
+<item
+    android:id="@+id/cord_home"
+    android:icon="@drawable/ic_menu_camera"
+    android:title="@string/menu_home" />
+<item
+    android:id="@+id/cord_actividades"
+    android:icon="@drawable/ic_menu_gallery"
+    android:title="@string/menu_actividades" />
+<item
+    android:id="@+id/cord_eventos"
+    android:icon="@drawable/ic_menu_slideshow"
+    android:title="@string/menu_eventos" />
 
+        <item android:title="Salir">
+                <menu>
 
+                        <item
+                            android:id="@+id/logoutCoord"
+                            android:icon="@drawable/ic_menu_manage"
+                            android:title="@string/menu_logout" />
+                </menu>
+        </item>
 </menu>

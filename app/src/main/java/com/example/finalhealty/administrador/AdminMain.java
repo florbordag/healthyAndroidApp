@@ -47,7 +47,7 @@ public class AdminMain extends AppCompatActivity {
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.home_admin, R.id.crearUsuario,R.id.listarUsuarios,R.id.listarActividades,
-                R.id.listarEventos)
+                R.id.listarEventos, R.id.logout_admin)
                 .setDrawerLayout(drawer)
                 .build();
 
