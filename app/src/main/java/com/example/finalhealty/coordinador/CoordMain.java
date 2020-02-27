@@ -15,7 +15,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.finalhealty.R;
+import com.example.finalhealty.ui.inicio.MainActivity;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 public class CoordMain extends AppCompatActivity {
     TextView titulo,secundario;
@@ -44,6 +46,9 @@ public class CoordMain extends AppCompatActivity {
         imgPerfil = hView.findViewById(R.id.foto_menu_cor);
         secundario= hView.findViewById(R.id.secundario_menucord);
 
+        titulo.setText(MainActivity.usuarioReal.getNombre()+" "+MainActivity.usuarioReal.getApellido());
+        secundario.setText(MainActivity.usuarioReal.getMail());
+        cargarFotoPerfil(MainActivity.usuarioReal.getFotoPerfil());
 
          mAppBarConfiguration = new AppBarConfiguration.Builder(
                  R.id.cord_home, R.id.cord_actividades,
@@ -67,4 +72,19 @@ public class CoordMain extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
     }
 
+
+    public void cargarFotoPerfil(String url){
+        Picasso.with(this).load(url).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher)
+                .into(imgPerfil, new com.squareup.picasso.Callback(){
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
+    }
 }
