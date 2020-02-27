@@ -127,7 +127,7 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         @GET("Evento/Coordinador/mias")
         Call<List<Evento>> getMisEventosCoord(@Header("Authorization")String token);
 
-        @PUT("evento/{id}")
+        @PUT("Evento/{id}")
         Call<Evento> putEvento(
                 @Header("Authorization")String token,
                 @Path("id") int id,
@@ -139,9 +139,9 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         Call<List<Actividad>> getMisActividadesCoord(@Header("Authorization")String token);
 
         @GET("Actividad/Coordinador/mi")
-        Call<List<Evento>> getActividadesDisponiblesCoord(@Header("Authorization")String token);
+        Call<List<Actividad>> getActividadesDisponiblesCoord(@Header("Authorization")String token);
 
-        @PUT("actividad/{id}")
+        @PUT("Actividad/{id}")
         Call<Evento> putEvento(
                 @Header("Authorization")String token,
                 @Path("id") int id,
@@ -151,17 +151,17 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         ///////ADMINISTRADORES////////
 
         //Usuarios
-        @FormUrlEncoded
-        @POST("ListenPostUsuario.php")
-        Call<List<Usuario>> login2(@Field("Usuariologuearapp") String paramLogi);
 
         //Eventos
-        @GET("Evento/Coordinador/mias")
+        @GET("Evento")
         Call<List<Evento>> getEventos(@Header("Authorization")String token);
 
         //Actividades
-        @GET("Actividad/Coordinador/mias")
+        @GET("Actividad")
         Call<List<Actividad>> getActividades(@Header("Authorization")String token);
+
+        //////////ESTADISTICAS//////////
+
 
 
     }

@@ -34,8 +34,8 @@ public class ActividadesViewModel extends AndroidViewModel {
     private String token;
     private int participa;
 
-    private List<Actividad> misActividades=new ArrayList<>();
-    private List<Actividad> dispoActividades=new ArrayList<>();
+    private List<Actividad> misActividades;
+    private List<Actividad> dispoActividades;
 
     private MutableLiveData<List<Actividad>> miActividadMutableLiveData;
     private MutableLiveData<List<Actividad>> suActividadMutableLiveData;
@@ -70,6 +70,7 @@ public class ActividadesViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<List<Actividad>> call, Response<List<Actividad>> response) {
                 if(!response.body().isEmpty()){
+                    misActividades=new ArrayList<>();
                     for (Actividad a: response.body()) {
                         misActividades.add(a);
                     }
@@ -81,7 +82,7 @@ public class ActividadesViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<List<Actividad>> call, Throwable t) {
-                Log.d("error",t.getMessage());
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
     }
@@ -92,6 +93,7 @@ public class ActividadesViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<List<Actividad>> call, Response<List<Actividad>> response) {
                 if(!response.body().isEmpty()){
+                    dispoActividades=new ArrayList<>();
                     for (Actividad a: response.body()) {
                         dispoActividades.add(a);
                     }
@@ -103,7 +105,7 @@ public class ActividadesViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<List<Actividad>> call, Throwable t) {
-                Log.d("error",t.getMessage());
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
     }
@@ -120,7 +122,7 @@ public class ActividadesViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<Actividad> call, Throwable t) {
-
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
     }
@@ -150,7 +152,7 @@ public class ActividadesViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<Participante> call, Throwable t) {
-
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
     }

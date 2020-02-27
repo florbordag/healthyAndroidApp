@@ -3,6 +3,7 @@ package com.example.finalhealty.ui.inicio;
 import android.os.Bundle;
 
 import com.example.finalhealty.R;
+import com.example.finalhealty.ShowToast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -27,8 +28,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Principal extends AppCompatActivity {
-    TextView titulo,secundario;
-    ImageView imgPerfil;
+    private TextView titulo,secundario;
+    private ImageView imgPerfil;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -47,7 +48,6 @@ public class Principal extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        //wauuuuuuuuuuuuuuu
         View hView = navigationView.getHeaderView(0);
         titulo = hView.findViewById(R.id.titulo);
         imgPerfil = hView.findViewById(R.id.imgPerfil);
@@ -71,10 +71,7 @@ public class Principal extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -108,8 +105,6 @@ public class Principal extends AppCompatActivity {
                     }
                 });
     }
-
-
 
 
 }

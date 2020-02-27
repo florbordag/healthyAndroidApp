@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.model.Actividad;
@@ -22,8 +24,8 @@ import com.example.finalhealty.ui.inicio.MainActivity;
 import java.util.List;
 
 public class FragActivDisponibles extends Fragment {
-    View v;
-    CordActiViewModel cordActiViewModel;
+    private View v;
+    private CordActiViewModel cordActiViewModel;
 
     public FragActivDisponibles() {
     }
@@ -31,16 +33,26 @@ public class FragActivDisponibles extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        cordActiViewModel =
+                ViewModelProviders.of(this).get(CordActiViewModel.class);
         v = inflater.inflate(R.layout.frag_dispoactividades, container, false);
 
-       List<Actividad> actividadesDisponibles = CordActiViewModel.mientrasTanto;
-
-        ArrayAdapter<Actividad> adapter = new com.example.finalhealty.coordinador.ui.coordmain.actividades.FragActivDisponibles.ActividadAdapter(getContext(), R.layout.itemactiviti, actividadesDisponibles, getLayoutInflater());
-        ListView lv = v.findViewById(R.id.listaSusActividades);
-        lv.setAdapter(adapter);
+        cargarActividades(v);
+        cordActiViewModel.getSusActividadesMLD();
+        cordActiViewModel.obtenerSusActividades();
 
         return v;
+    }
+
+    public void cargarActividades(final View view){
+        cordActiViewModel.getSusActividadesMLD().observe(this, new Observer<List<Actividad>>() {
+            @Override
+            public void onChanged(List<Actividad> actividads) {
+                ArrayAdapter<Actividad> adapter =new ActividadAdapter(getContext(),R.layout.itemactiviti, actividads, getLayoutInflater());
+                ListView lv = view.findViewById(R.id.listaSusActividades);
+                lv.setAdapter(adapter);
+            }
+        });
     }
 
 
@@ -73,18 +85,7 @@ public class FragActivDisponibles extends Fragment {
             TextView horario = itemView.findViewById(R.id.tvHorario);
             horario.setText(actividad.getHorario());
             Button button = itemView.findViewById(R.id.btnAbandonar);
-            button.setText("no pode hacer na");
-
-
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getActivity(), "Inscribirse a   " + actividad.getTitulo(), Toast.LENGTH_LONG).show();
-
-                }
-
-            });
-
+            button.setVisibility(View.GONE);
 
             return itemView;
         }

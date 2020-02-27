@@ -1,6 +1,8 @@
 package com.example.finalhealty.ui.actividades;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,8 +30,8 @@ import java.util.List;
 import retrofit2.Call;
 
 public class FragmentActividadesDisponibles extends Fragment {
-    ActividadesViewModel actividadesViewModel;
-    View v ;
+    private ActividadesViewModel actividadesViewModel;
+    private View v ;
 
     public FragmentActividadesDisponibles() {
     }
@@ -49,7 +51,6 @@ public class FragmentActividadesDisponibles extends Fragment {
     }
 
     public void cargarActividades(final View view){
-        actividadesViewModel= ViewModelProviders.of(this).get(ActividadesViewModel.class);
         actividadesViewModel.getSuActividadMutableLiveData().observe(this, new Observer<List<Actividad>>() {
             @Override
             public void onChanged(List<Actividad> actividads) {
@@ -95,9 +96,20 @@ public class FragmentActividadesDisponibles extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getActivity(), "Participar de   "+ actividad.getTitulo(),Toast.LENGTH_LONG).show();
-                    actividadesViewModel.participar(actividad);
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Cerrar sesion")
+                            .setMessage("¿Desea abandonar de la aplicacion?")
+                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    actividadesViewModel.participar(actividad);
+                                }
+                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
+                        }
+                    }).show();
                 }
 
             });

@@ -19,7 +19,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainViewModel extends AndroidViewModel {
-    SharedPreferences sp;
+    private SharedPreferences sp;
     private MutableLiveData<Integer> error;
     private MutableLiveData<String> token;
     private MutableLiveData<Usuario> usuarioMutableLiveData;
@@ -54,7 +54,6 @@ public class MainViewModel extends AndroidViewModel {
         leer();
         return usuarioMutableLiveData;
     }
-
 
 // >>>>>>>>>>>>>>>>>>>TRUE METHOD<<<<<<<<<<<<<<<<
    public void ingresar(String mail, String password){

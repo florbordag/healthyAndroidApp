@@ -1,7 +1,9 @@
 
 package com.example.finalhealty.ui.actividades;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,8 +98,20 @@ public class FragmentMisActividades extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getActivity(), "Funciona   "+ actividad.getTitulo(),Toast.LENGTH_LONG).show();
-                    actividadesViewModel.abandonar(actividad);
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Cerrar sesion")
+                            .setMessage("¿Desea abandonar de la aplicacion?")
+                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    actividadesViewModel.abandonar(actividad);
+                                }
+                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).show();
 
                 }});
 

@@ -17,16 +17,17 @@ import com.example.finalhealty.ui.ViewPagerAdapter;
 import com.example.finalhealty.coordinador.CoordMain;
 import com.example.finalhealty.model.Actividad;
 import com.example.finalhealty.model.Usuario;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
 public class CordActividades extends Fragment {
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private ViewPagerAdapter adapter;
     private CordActiViewModel cordActiViewModel;
-    static List<Actividad> misActivCord;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private AppBarLayout appBar;
+    private ViewPagerAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,31 +38,13 @@ public class CordActividades extends Fragment {
         ((CoordMain) getActivity()).setActionBarTitle("Coordinadores - Actividades");
 
 
-        tabLayout= (TabLayout) root.findViewById(R.id.tabLayCoorActivi);
-        viewPager = (ViewPager) root.findViewById(R.id.vp_coorActivi);
-        adapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPager=root.findViewById(R.id.viewPagerC);
+        appBar=root.findViewById(R.id.appBarC);
+        tabLayout=new TabLayout(getContext());
 
+        appBar.addView(tabLayout);
 
-
-
-cordActiViewModel.getMisActividadesMLD().observe(this, new Observer<List<Actividad>>() {
-            @Override
-            public void onChanged(List<Actividad> actividads) {
-                misActivCord=actividads;
-            }
-        }
-);
-
-
-        cordActiViewModel.getPropietarioMutableLiveData().observe(this, new Observer<Usuario>() {
-            @Override
-            public void onChanged(@Nullable Usuario usuario) {
-                //propietarioVisto=usuario;
-
-                //fijarDatos(usuario);
-            }
-        });
-
+        adapter=new ViewPagerAdapter(getChildFragmentManager());
 
 
         adapter.addFragment(new FragCrearActividad(),"NUEVA ACTIVIDAD");
