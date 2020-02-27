@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.finalhealty.ShowToast;
+import com.example.finalhealty.coordinador.ui.coordmain.eventos.FragMisEventos;
 import com.example.finalhealty.model.Evento;
 import com.example.finalhealty.request.ApiClient;
 
@@ -24,8 +25,8 @@ public class EventosViewModel extends AndroidViewModel {
     private Context context;
     private String token;
 
-    private List<Evento> misEventos=new ArrayList<>();
-    private List<Evento> eventosDisponibles=new ArrayList<>();
+    private List<Evento> misEventos;
+    private List<Evento> eventosDisponibles;
 
     private MutableLiveData<List<Evento>> miEventoMutableLiveData;
     private MutableLiveData<List<Evento>> suEventoMutableLiveData;
@@ -85,7 +86,6 @@ public class EventosViewModel extends AndroidViewModel {
                 if(!response.body().isEmpty()){
                     eventosDisponibles=new ArrayList<>();
                     for (Evento e: response.body()) {
-
                         eventosDisponibles.add(e);
                     }
                     if(getSusEventosMLD()!=null){
@@ -120,6 +120,21 @@ public class EventosViewModel extends AndroidViewModel {
     }
 
     public void abandonar(Evento evento){
-        //TODO agregue su abandono aqui
+        Call<Evento> dato=ApiClient.getMyApiClient().abandonarEvento(token,evento.getId());
+        dato.enqueue(new Callback<Evento>() {
+            @Override
+            public void onResponse(Call<Evento> call, Response<Evento> response) {
+                if(response.isSuccessful()){
+                    obtenerMisEventos();
+                    obtenerEventosDisponibes();
+                    new ShowToast(context,"Abandonó el evento "+response.body().getTitulo());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Evento> call, Throwable t) {
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
+            }
+        });
     }
 }

@@ -28,7 +28,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
-    private static final String PATH="https://healthy2020.conveyor.cloud/";    //http://10.75.220.46:45455/Api/";
+    private static final String PATH="http://10.75.220.46:45455/Api/";
     private static  MyApiInterface myApiInteface;
 
     public static MyApiInterface getMyApiClient(){
@@ -98,8 +98,8 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         @GET("InscripcionEvento")
         Call<Integer> idInscripcion(@Header("Authorization")String token, @Query("usuario") int usuario, @Query("evento") int evento);
 
-        @DELETE("InscripcionEvento/{id}")
-        Call<Integer> abandonarEvento(@Header("Authorization")String token, @Path("id") int id, @Query("Estado") int estado);
+        @DELETE("InscripcionEvento")
+        Call<Evento> abandonarEvento(@Header("Authorization")String token, @Query("Id") int eventoId);
 
         //Actividades
         @GET("Actividad/Usuario/mias")
@@ -111,11 +111,8 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         @POST("Participante")
         Call<Actividad> participar(@Header("Authorization")String token, @Query("ActividadId") int actividadId);
 
-        @GET("Participante")
-        Call<Integer> idParticipante(@Header("Authorization")String token, @Query("usuario") int usuario,@Query("actividad") int actividad);
-
-        @DELETE("Participante/{id}")
-        Call<Participante> abandonar(@Header("Authorization")String token, @Path("id") int id, @Query("Estado") int estado);
+        @DELETE("Participante")
+        Call<Actividad> abandonar(@Header("Authorization")String token, @Query("Id") int actividad);
 
         //Medallas
         @GET("MedallaVirtual/{id}")

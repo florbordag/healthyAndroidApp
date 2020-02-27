@@ -1,5 +1,6 @@
 package com.example.finalhealty.ui.inicio;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.finalhealty.R;
@@ -31,6 +32,7 @@ public class Principal extends AppCompatActivity {
     private TextView titulo,secundario;
     private ImageView imgPerfil;
     private AppBarConfiguration mAppBarConfiguration;
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +108,15 @@ public class Principal extends AppCompatActivity {
                 });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+        sp=this.getSharedPreferences("token",0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("token","");
+        editor.commit();
+    }
 }
 
 

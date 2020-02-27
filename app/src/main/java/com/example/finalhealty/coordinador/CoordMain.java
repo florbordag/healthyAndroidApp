@@ -1,5 +1,6 @@
 package com.example.finalhealty.coordinador;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ public class CoordMain extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private AppBarConfiguration mAppBarConfiguration;
+    private SharedPreferences sp;
 
 
     @Override
@@ -86,5 +88,15 @@ public class CoordMain extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        sp=this.getSharedPreferences("token",0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("token","");
+        editor.commit();
     }
 }

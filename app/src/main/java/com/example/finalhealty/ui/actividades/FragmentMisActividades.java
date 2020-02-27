@@ -100,7 +100,7 @@ public class FragmentMisActividades extends Fragment {
                 public void onClick(View view) {
                     new AlertDialog.Builder(getContext())
                             .setTitle("Abandonar")
-                            .setMessage("¿Desea abandonar esta actividad? Si es asi va a tener que esperar un buen rato porque la backend enana que corre esta aplicacion tiene las patas cortas")
+                            .setMessage("¿Desea abandonar la actividad "+actividad.getTitulo()+"?")
                             .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
