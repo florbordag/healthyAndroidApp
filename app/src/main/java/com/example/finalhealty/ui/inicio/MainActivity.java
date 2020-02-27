@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(Usuario usuario) {
 
                 usuarioReal= usuario;
-                if(usuario.getFotoPerfil()==null){usuarioReal.setFotoPerfil("https://cdnlrv.lavoz.com.ar/img/user/default.jpg");}
+                if(usuario.getFotoPerfil()==null){usuarioReal.setFotoPerfil("https://www.shantiyoga.com.au/wp-content/uploads/default-avatar3.png");}
 
 
             }

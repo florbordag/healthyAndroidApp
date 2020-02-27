@@ -9,23 +9,26 @@
 
     <TextView
         android:id="@+id/tituloEvento"
-        android:textSize="25dp"
-        android:layout_width="wrap_content"
+        android:textSize="22dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nombre de actividad"
-        android:layout_gravity="center"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/horarioEvento"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:text="Horario: "
-        android:textSize="20dp"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,13 +36,12 @@
 
     <TextView
         android:id="@+id/descripcionEvento"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:text="Descripcion bla bla bla bls bls bls bla"
-        android:textSize="20dp"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -47,9 +49,10 @@
     <Button
         android:id="@+id/btnAbandonarEvento"
         android:layout_width="226dp"
-        android:layout_height="37dp"
+        android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:text="Abandonar"
+        android:textColor="@android:color/black"
         android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

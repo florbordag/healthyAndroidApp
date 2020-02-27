@@ -16,19 +16,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
 
             <TextView
                 android:id="@+id/name"
-                android:textSize="25dp"
+                android:textSize="22dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nombre de actividad"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/colorPrimaryDark"/>
 
         </LinearLayout>
 
@@ -49,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Descripcion bla bla bla bls bls bls bla"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -75,11 +77,12 @@
                 android:layout_height="wrap_content"
                 android:text="Horario: "
                 android:gravity="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.119"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descripcion" />
+                app:layout_constraintTop_toBottomOf="@+id/descripcion"
+                android:textColor="@android:color/black"/>
         </LinearLayout>
 
         <LinearLayout
@@ -92,7 +95,7 @@
             <Button
                 android:id="@+id/btnAbandonar"
                 android:layout_width="226dp"
-                android:layout_height="37dp"
+                android:layout_height="40dp"
                 android:text="Abandonar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
