@@ -32,7 +32,7 @@
         android:ems="10"
         android:hint="Mail"
         android:inputType="textEmailAddress"
-        android:text="coord1@healthy.com"
+        android:text="flor@healthy.com"
         android:textAlignment="center" />
 
     <EditText
@@ -43,7 +43,7 @@
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:text="123"
+        android:text="12345"
         android:textAlignment="center" />
 
     <Button
