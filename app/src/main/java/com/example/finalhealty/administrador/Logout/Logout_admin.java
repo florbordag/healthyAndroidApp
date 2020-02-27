@@ -25,7 +25,7 @@ public class Logout_admin extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         ViewModelProviders.of(this).get(LogoutAdminViewModel.class);
         View root = inflater.inflate(R.layout.fragment_logout_admin, container, false);
-        ((AdminMain) getActivity()).setActionBarTitle("ADMINISTRADOR - Cerrar Sesion");
+        ((AdminMain) getActivity()).setActionBarTitle("ADMIN - Cerrar Sesion");
 
         return root;
     }

@@ -134,12 +134,7 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
                 @Body Evento evento);
 
         @POST("Evento")
-        Call<Evento> crearEvento(
-                @Header("Authorization")String token,
-                @Query("Nombre") String nombre,
-                @Query("Descripcion") String descripcion,
-                @Query("FechaHora") String horario,
-                @Query("ActividadId") int actividad);
+        Call<Evento> crearEvento(@Header("Authorization")String token, @Body Evento e);
 
 
         //Actividades
@@ -156,16 +151,14 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
                 @Body Actividad actividad);
 
         @POST("Actividad")
-        Call<Actividad> crearActividad(
-                @Header("Authorization")String token,
-                @Query("Nombre") String nombre,
-                @Query("Descripcion") String descripcion,
-                @Query("Horario") String horario);
+        Call<Actividad> crearActividad(@Header("Authorization")String token, @Body Actividad a);
 
 
         ///////ADMINISTRADORES////////
 
         //Usuarios
+        @POST("Usuario")
+        Call<Usuario> crearUsuario(@Header("Authorization")String token, @Body Usuario usuario);
 
         //Eventos
         @GET("Evento")

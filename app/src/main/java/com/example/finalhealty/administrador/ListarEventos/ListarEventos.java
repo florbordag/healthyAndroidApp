@@ -24,7 +24,7 @@ public class ListarEventos extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         ViewModelProviders.of(this).get(ListarEventosViewModel.class);
         View root = inflater.inflate(R.layout.fragment_listar_eventos, container, false);
-        ((AdminMain) getActivity()).setActionBarTitle("ADMINISTRADOR - Listar Eventos");
+        ((AdminMain) getActivity()).setActionBarTitle("ADMIN - Listar Eventos");
 
         return root;
     }

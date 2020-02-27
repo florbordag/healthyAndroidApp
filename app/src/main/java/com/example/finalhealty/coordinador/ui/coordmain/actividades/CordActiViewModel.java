@@ -106,12 +106,14 @@ public class CordActiViewModel extends AndroidViewModel {
     }
 
     public void crearActividad(Actividad a){
-        Call<Actividad> dato=ApiClient.getMyApiClient().crearActividad(token,a.getTitulo(),a.getDescripcion(),a.getHorario());
+        Call<Actividad> dato=ApiClient.getMyApiClient().crearActividad(token,a);
         dato.enqueue(new Callback<Actividad>() {
             @Override
             public void onResponse(Call<Actividad> call, Response<Actividad> response) {
-                new ShowToast(context,"La actividad se creo con éxito");
-                obtenerMisActividades();
+                if(response.isSuccessful()){
+                    new ShowToast(context,"La actividad se creo con éxito");
+                    obtenerMisActividades();
+                }
             }
 
             @Override

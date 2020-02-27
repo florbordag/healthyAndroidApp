@@ -53,16 +53,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
 
-                if(usuarioReal!=null&&usuarioReal.getRol().equals("Usuario")){
-                    Intent i=new Intent(getApplicationContext(),Principal.class);
-                    startActivity(i);
-                } else if (usuarioReal!=null&&usuarioReal.getRol().equals("Coordinador")){
-                    Intent c= new Intent(getApplicationContext(), CoordMain.class);
-                    startActivity(c);
-                } else if(usuarioReal!=null &&usuarioReal.getRol().equals("Administrador")){
-                   Toast.makeText(getApplicationContext(),"Sesion Administrador ", Toast.LENGTH_LONG).show();
-                    Intent a = new Intent(getApplicationContext(), AdminMain.class);
-                    startActivity(a);
+                if(usuarioReal!=null){
+                    switch(usuarioReal.getRol()){
+                        case "Usuario":
+                            Intent i=new Intent(getApplicationContext(),Principal.class);
+                            startActivity(i);
+                            break;
+                        case "Coordinador":
+                            Intent c= new Intent(getApplicationContext(), CoordMain.class);
+                            startActivity(c);
+                            break;
+                        case "Administrador":
+                            Intent a = new Intent(getApplicationContext(), AdminMain.class);
+                            startActivity(a);
+                            break;
+                    }
                 }
             }
         });

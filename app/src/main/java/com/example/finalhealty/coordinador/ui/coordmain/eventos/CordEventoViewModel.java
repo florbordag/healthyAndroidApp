@@ -67,12 +67,14 @@ public class CordEventoViewModel extends AndroidViewModel {
     }
 
     public void crearEvento(Evento e){
-        Call<Evento> dato=ApiClient.getMyApiClient().crearEvento(token,e.getTitulo(),e.getDescripcion(),e.getFechaHora(),e.getActividadId());
+        Call<Evento> dato=ApiClient.getMyApiClient().crearEvento(token,e);
         dato.enqueue(new Callback<Evento>() {
             @Override
             public void onResponse(Call<Evento> call, Response<Evento> response) {
-                new ShowToast(context,"El evento se creo con éxito");
-                obtenerMisEventos();
+                if(response.isSuccessful()){
+                    new ShowToast(context,"El evento se creo con éxito");
+                    obtenerMisEventos();
+                }
             }
 
             @Override

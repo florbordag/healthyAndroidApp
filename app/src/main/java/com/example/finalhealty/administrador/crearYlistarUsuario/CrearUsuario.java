@@ -13,23 +13,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.administrador.AdminMain;
+import com.example.finalhealty.model.Usuario;
+import com.example.finalhealty.ui.inicio.MainActivity;
 
 public class CrearUsuario extends Fragment {
-private String rolSeleccionado;
-private Spinner spinnerRol;
-private EditText mail, nombre, apellido, dni, pass, fecNac;
+    private UsuarioMainViewModel usuarioMainViewModel;
+    private String rolSeleccionado;
+    private Spinner spinnerRol;
+    private EditText mail, nombre, apellido, dni, pass, fecNac;
+    private Button boton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ViewModelProviders.of(this).get(UsuarioMainViewModel.class);
+        usuarioMainViewModel=ViewModelProviders.of(this).get(UsuarioMainViewModel.class);
         View root = inflater.inflate(R.layout.fragment_crear_usuario, container, false);
-        ((AdminMain) getActivity()).setActionBarTitle("ADMINISTRADOR - Crear Usuario");
+        ((AdminMain) getActivity()).setActionBarTitle("ADMIN - Crear Usuario");
+
         spinnerRol= root.findViewById(R.id.spinnerRol);
         mail= root.findViewById(R.id.etCrearMail);
         nombre= root.findViewById(R.id.etCrearNombre);
@@ -38,7 +44,7 @@ private EditText mail, nombre, apellido, dni, pass, fecNac;
         pass= root.findViewById(R.id.etCrearPassword);
         fecNac= root.findViewById(R.id.etCrearFecnac);
 
-
+        boton=root.findViewById(R.id.guardarUsuario);
 
         spinnerRol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -55,10 +61,35 @@ private EditText mail, nombre, apellido, dni, pass, fecNac;
             {    }
         });
 
-
-
-
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                crear();
+            }
+        });
 
         return root;
+    }
+
+    public void crear(){
+        Usuario u = new Usuario();
+        u.setEmpresa(MainActivity.usuarioReal.getEmpresa());
+        u.setMail(mail.getText().toString());
+        u.setNombre(nombre.getText().toString());
+        u.setApellido(apellido.getText().toString());
+        u.setDni(dni.getText().toString());
+        u.setPassword(pass.getText().toString());
+        u.setRol(rolSeleccionado);
+        u.setFecNac(fecNac.getText().toString());
+        u.setFumador(0);
+
+        usuarioMainViewModel.crearUSuario(u);
+        //obtener
+
+        mail.setText("@healthy.com");
+        nombre.setText("");
+        apellido.setText("");
+        dni.setText("");
+        fecNac.setText("");
     }
 }

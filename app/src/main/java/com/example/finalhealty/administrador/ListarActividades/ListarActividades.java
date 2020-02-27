@@ -24,7 +24,7 @@ public class ListarActividades extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         ViewModelProviders.of(this).get(ListarActividadesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_listar_actividades, container, false);
-        ((AdminMain) getActivity()).setActionBarTitle("ADMINISTRADOR - Listar Actividades");
+        ((AdminMain) getActivity()).setActionBarTitle("ADMIN - Listar Actividades");
 
         return root;
     }

@@ -14,8 +14,8 @@ public class ShowToast {
         View view = toast.getView();
         view.setBackgroundColor(Color.parseColor("#F5BCA9"));
         TextView text = view.findViewById(android.R.id.message);
-        text.setTextColor(Color.BLACK);
-        text.setPadding(100, 15, 100, 15);
+        text.setTextColor(Color.DKGRAY);
+        text.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         toast.show();
     }
 }

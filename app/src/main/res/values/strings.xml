@@ -36,7 +36,6 @@
 
 
     <string-array name="roles">
-        <item>Seleccione</item>
         <item>Administrador</item>
         <item>Coordinador</item>
         <item>Usuario</item>

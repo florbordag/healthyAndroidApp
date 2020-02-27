@@ -38,7 +38,7 @@ private UsuarioMainViewModel usuarioMainViewModel;
                              ViewGroup container, Bundle savedInstanceState) {
         ViewModelProviders.of(this).get(UsuarioMainViewModel.class);
         View root = inflater.inflate(R.layout.fragment_listar_usuarios, container, false);
-        ((AdminMain) getActivity()).setActionBarTitle("ADMINISTRADOR - Listar Usuarios");
+        ((AdminMain) getActivity()).setActionBarTitle("ADMIN - Listar Usuarios");
 
        // cargarUsuarios(root);
 

@@ -24,7 +24,7 @@ public class Home_admin extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         ViewModelProviders.of(this).get(HomeAdminViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home_admin, container, false);
-        ((AdminMain) getActivity()).setActionBarTitle("ADMINISTRADOR - Home");
+        ((AdminMain) getActivity()).setActionBarTitle("ADMIN - Home");
 
         return root;
     }
