@@ -33,4 +33,12 @@
     <string name="listarUsuarios">Listar Usuarios</string>
     <string name="listarActividades">Listar actividades</string>
     <string name="listarEventos">Listar eventos</string>
+
+
+    <string-array name="roles">
+        <item>Seleccione</item>
+        <item>Administrador</item>
+        <item>Coordinador</item>
+        <item>Usuario</item>
+    </string-array>
 </resources>
