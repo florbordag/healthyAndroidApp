@@ -94,7 +94,7 @@ public class FragmentEventosDisponibles extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(getActivity(), "Funciona   "+ evento.getTitulo(),Toast.LENGTH_LONG).show();
-                    //EventosDisponibles=InscribirYreordenar(evento);
+                    eventosViewModel.participar(evento);
 
                 }});
 
