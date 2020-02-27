@@ -28,23 +28,23 @@
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Mail"
-        android:text="user1@healthy.com"
         android:layout_marginHorizontal="40dp"
-        android:textAlignment="center"
         android:ems="10"
-        android:inputType="textEmailAddress" />
+        android:hint="Mail"
+        android:inputType="textEmailAddress"
+        android:text="flor@healthy.com"
+        android:textAlignment="center" />
 
     <EditText
         android:id="@+id/et_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:text="1234"
-        android:hint="Contraseña"
-        android:textAlignment="center"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:text="12345"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/bt_entrar"

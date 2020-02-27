@@ -18,13 +18,13 @@ import com.example.finalhealty.model.Usuario;
 
 
 public class Home_admin extends Fragment {
-    HomeAdminViewModel homeAdminViewModel;
-    Usuario propietarioVisto;
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewModelProviders.of(this).get(HomeAdminViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home_admin, container, false);
-        ((AdminMain) getActivity()).setActionBarTitle("Admin Homr");
+        ((AdminMain) getActivity()).setActionBarTitle("ADMINISTRADOR - Home");
 
         return root;
     }

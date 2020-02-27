@@ -30,7 +30,7 @@ public class AdminMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_acivity);
         dl = findViewById(R.id.drawer_admin);
-        Toolbar toolbar = findViewById(R.id.toolbar2);
+        Toolbar toolbar = findViewById(R.id.toolbar3);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_admin);
@@ -46,7 +46,7 @@ public class AdminMain extends AppCompatActivity {
 
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.home_admin, R.id.crearUsuario,R.id.listarUsuarios,R.id.listaActividades,
+                R.id.home_admin, R.id.crearUsuario,R.id.listarUsuarios,R.id.listarActividades,
                 R.id.listarEventos)
                 .setDrawerLayout(drawer)
                 .build();
