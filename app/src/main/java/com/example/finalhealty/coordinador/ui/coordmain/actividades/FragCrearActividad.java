@@ -44,7 +44,6 @@ public class FragCrearActividad extends Fragment {
     }
 
     public void crear(){
-        Log.d("datos ",nombre.getText().toString()+" "+descripcion.getText().toString()+" "+horario.getText().toString());
         Actividad a = new Actividad();
         a.setTitulo(nombre.getText().toString());
         a.setDescripcion(descripcion.getText().toString());

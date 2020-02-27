@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.finalhealty.ShowToast;
 import com.example.finalhealty.model.Evento;
 import com.example.finalhealty.request.ApiClient;
 
@@ -22,7 +23,6 @@ import retrofit2.Response;
 public class EventosViewModel extends AndroidViewModel {
     private Context context;
     private String token;
-    private int inscripcion;
 
     private List<Evento> misEventos=new ArrayList<>();
     private List<Evento> eventosDisponibles=new ArrayList<>();
@@ -71,10 +71,9 @@ public class EventosViewModel extends AndroidViewModel {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<List<Evento>> call, Throwable t) {
-
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
     }
@@ -94,27 +93,27 @@ public class EventosViewModel extends AndroidViewModel {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<List<Evento>> call, Throwable t) {
-
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
     }
 
-    public void participar(Evento evento){
+    public void participar(final Evento evento){
         Call<Evento> dato= ApiClient.getMyApiClient().inscribirse(token,evento.getId());
         dato.enqueue(new Callback<Evento>() {
             @Override
             public void onResponse(Call<Evento> call, Response<Evento> response) {
                 if(response.isSuccessful()){
                     obtenerEventosDisponibes();
+                    obtenerMisEventos();
+                    new ShowToast(context,"Se inscribió al evento "+evento.getTitulo());
                 }
             }
-
             @Override
             public void onFailure(Call<Evento> call, Throwable t) {
-
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
 

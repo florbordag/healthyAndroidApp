@@ -102,7 +102,6 @@ public class ActividadesViewModel extends AndroidViewModel {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<List<Actividad>> call, Throwable t) {
                 new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
@@ -110,13 +109,15 @@ public class ActividadesViewModel extends AndroidViewModel {
         });
     }
 
-    public void participar(Actividad actividad){
+    public void participar(final Actividad actividad){
         Call<Actividad> dato= ApiClient.getMyApiClient().participar(token,actividad.getId());
         dato.enqueue(new Callback<Actividad>() {
             @Override
             public void onResponse(Call<Actividad> call, Response<Actividad> response) {
                 if(response.isSuccessful()){
                     obtenerActividadesDisponibles();
+                    obtenerMisActividades();
+                    new ShowToast(context,"Se inscribió a la actividad "+actividad.getTitulo());
                 }
             }
 
@@ -147,6 +148,7 @@ public class ActividadesViewModel extends AndroidViewModel {
             public void onResponse(Call<Participante> call, Response<Participante> response) {
                 if(response.isSuccessful()){
                     obtenerMisActividades();
+                    obtenerActividadesDisponibles();
                 }
             }
 

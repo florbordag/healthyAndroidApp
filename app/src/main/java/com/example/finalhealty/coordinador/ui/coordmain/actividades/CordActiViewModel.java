@@ -25,7 +25,6 @@ import retrofit2.Response;
 public class CordActiViewModel extends AndroidViewModel {
     private Context context;
     private String token;
-    private int respuesta;
     private SharedPreferences sp;
 
     private List<Actividad> misActividades;
@@ -112,6 +111,7 @@ public class CordActiViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Actividad> call, Response<Actividad> response) {
                 new ShowToast(context,"La actividad se creo con éxito");
+                obtenerMisActividades();
             }
 
             @Override
