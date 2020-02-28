@@ -23,19 +23,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PerfilViewModel extends AndroidViewModel {
-   // private Context context;
-  MutableLiveData<Usuario> usuarioMutableLiveData;
-  Usuario user= MainActivity.usuarioReal;
-  Context context;
-  SharedPreferences sp;
-  MutableLiveData<String> error;
+  private MutableLiveData<Usuario> usuarioMutableLiveData;
+  private Usuario user= MainActivity.usuarioReal;
+  private Context context;
+  private SharedPreferences sp;
 
     public PerfilViewModel(@NonNull Application application) {
         super(application);
         context= getApplication().getApplicationContext();
          sp= context.getSharedPreferences("token",0);
 
-         //Agregar dialogo de confirmacion
     }
 
     public MutableLiveData<Usuario> getUsuarioMutableLiveData(){
@@ -44,17 +41,10 @@ public class PerfilViewModel extends AndroidViewModel {
         }
         return usuarioMutableLiveData;
     }
-    public MutableLiveData<String> getErrorMutableLiveData(){
-        if(error==null){
-            error=new MutableLiveData<>();
-        }
-        return error;
-    }
-
 
     public void putPassword(String pass1,String pass2, String pass3) {
         if(!pass2.equals(pass3)){
-            error.postValue("Las claves deben coincidir");
+            new ShowToast(context,"Las contraseñas deben coincidir");
         } else{
            Call<Usuario> dato = ApiClient.getMyApiClient().putClaveUsuario(
                     sp.getString("token",""),

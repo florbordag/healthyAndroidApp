@@ -28,11 +28,7 @@ import java.util.List;
 public class Home_admin extends Fragment {
     private HomeAdminViewModel homeAdminViewModel;
     private TextView todes, mies,actividades,eventes;
-
-    private int contador;
-    private int total;
-    private int sumando;
-    private int noRestando;
+    private int contador, total, sumando, noRestando;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,11 +41,7 @@ public class Home_admin extends Fragment {
         actividades=root.findViewById(R.id.tvTotalActividades);
         eventes=root.findViewById(R.id.tvTotalEventos);
 
-        contador=0;
-        total=0;
-        sumando=0;
-        noRestando=0;
-
+        contador=0;total=0;sumando=0;noRestando=0;
 
         getUsuarios();
         homeAdminViewModel.cantidadUsuarios();
