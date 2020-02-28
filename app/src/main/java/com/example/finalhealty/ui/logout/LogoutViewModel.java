@@ -27,6 +27,7 @@ public class LogoutViewModel extends AndroidViewModel {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("token" , "");
         editor.commit();
+        MainActivity.usuarioReal=null;
     }
 
 }

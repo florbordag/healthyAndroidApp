@@ -44,7 +44,9 @@ public class LogoutFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         logoutViewModel.logOut();
-                        System.exit(0);
+                        Intent i = new Intent(getContext(), MainActivity.class);
+                        startActivity(i);
+                        getActivity().finish();
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override

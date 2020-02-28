@@ -42,14 +42,12 @@ public class MedallasFragment extends Fragment {
     }
 
     public void listarMedallas(final View view){
-        medallasViewModel=ViewModelProviders.of(this).get(MedallasViewModel.class);
         medallasViewModel.getMedallasMLD().observe(this, new Observer<List<MedallaVirtual>>() {
             @Override
             public void onChanged(List<MedallaVirtual> medallaVirtuals) {
                 ArrayAdapter<MedallaVirtual> adapter= new MedallaAdapter(getContext(),R.layout.itemmeda,medallaVirtuals,getLayoutInflater());
                 ListView lv= view.findViewById(R.id.listaSusMedallas);
                 lv.setAdapter(adapter);
-                Log.d("creando adapter","pasa");
             }
         });
     }

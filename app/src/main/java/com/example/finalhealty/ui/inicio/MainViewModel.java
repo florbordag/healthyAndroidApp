@@ -11,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.finalhealty.ShowToast;
 import com.example.finalhealty.model.Usuario;
 import com.example.finalhealty.request.ApiClient;
 
@@ -23,7 +24,6 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> error;
     private MutableLiveData<String> token;
     private MutableLiveData<Usuario> usuarioMutableLiveData;
-    public static Usuario user;
     private Context context;
 
     public MainViewModel(@NonNull Application application) {
@@ -59,32 +59,24 @@ public class MainViewModel extends AndroidViewModel {
    public void ingresar(String mail, String password){
 
         Call<String> dato= ApiClient.getMyApiClient().login(mail,password);
-       // Log.d("salida mapa:",parametro);
+
         dato.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
 
                 if (response.isSuccessful()) {
                     token.postValue(response.body());
-                    SharedPreferences sp = context.getSharedPreferences("token", 0);
+                    sp = context.getSharedPreferences("token", 0);
                     SharedPreferences.Editor editor = sp.edit();
                     String t = "Bearer " + response.body();
                     editor.putString("token", t);
                     editor.commit();
-                    error.postValue(8);
-                } else {
-                    //Visible Visibility
-                    error.postValue(1);
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-
-                error.postValue(0);
-                Log.d("salida Error",t.getMessage());
-                Log.d("salida Error",call.request().body().toString());
-                t.printStackTrace();
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
     }
@@ -103,7 +95,6 @@ public class MainViewModel extends AndroidViewModel {
 
                                 @Override
                                 public void onFailure(Call<Usuario> call, Throwable t) {
-                                    // Toast.makeText(getApplication(),t.getMessage()+"",Toast.LENGTH_LONG);
                                 }
                             }
         );

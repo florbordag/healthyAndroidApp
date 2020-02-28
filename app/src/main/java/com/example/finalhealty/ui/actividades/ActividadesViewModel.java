@@ -2,6 +2,7 @@ package com.example.finalhealty.ui.actividades;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.provider.Telephony;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.example.finalhealty.model.Evento;
 import com.example.finalhealty.model.Participante;
 import com.example.finalhealty.model.Usuario;
 import com.example.finalhealty.request.ApiClient;
+import com.example.finalhealty.ui.eventos.EventosFragment;
 import com.example.finalhealty.ui.home.HomeViewModel;
 import com.example.finalhealty.ui.inicio.MainActivity;
 import com.example.finalhealty.ui.inicio.MainViewModel;
@@ -130,34 +132,24 @@ public class ActividadesViewModel extends AndroidViewModel {
 
     //Hacer menos lento
     public void abandonar(Actividad actividad){
-        Call<Integer> id=ApiClient.getMyApiClient().idParticipante(token, MainActivity.usuarioReal.getId(),actividad.getId());
-        id.enqueue(new Callback<Integer>() {
+        Call<Actividad> dato= ApiClient.getMyApiClient().abandonar(token,actividad.getId());
+        dato.enqueue(new Callback<Actividad>() {
             @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
-                participa=response.body();
-            }
-
-            @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
-
-            }
-        });
-        Call<Participante> dato= ApiClient.getMyApiClient().abandonar(token,participa,0);
-        dato.enqueue(new Callback<Participante>() {
-            @Override
-            public void onResponse(Call<Participante> call, Response<Participante> response) {
+            public void onResponse(Call<Actividad> call, Response<Actividad> response) {
                 if(response.isSuccessful()){
-                    obtenerMisActividades();
                     obtenerActividadesDisponibles();
+                    obtenerMisActividades();
+                    new ShowToast(context,"Abandonó la actividad "+response.body().getTitulo());
                 }
             }
 
             @Override
-            public void onFailure(Call<Participante> call, Throwable t) {
+            public void onFailure(Call<Actividad> call, Throwable t) {
                 new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
     }
+
 
 
 }

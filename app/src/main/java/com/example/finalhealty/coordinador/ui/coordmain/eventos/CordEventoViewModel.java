@@ -83,4 +83,22 @@ public class CordEventoViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void darDeBaja(Evento evento){
+        Call<Evento> dato=ApiClient.getMyApiClient().darDeBaja(token, evento.getId());
+        dato.enqueue(new Callback<Evento>() {
+            @Override
+            public void onResponse(Call<Evento> call, Response<Evento> response) {
+                if(response.isSuccessful()){
+                    new ShowToast(context,"El evento se dio de baja con éxito");
+                    obtenerMisEventos();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Evento> call, Throwable t) {
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
+            }
+        });
+    }
 }

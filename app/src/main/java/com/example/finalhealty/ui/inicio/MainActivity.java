@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +24,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText email;
-    private EditText pass;
+    private EditText email,pass;
+    private Button boton;
     private TextView error;
-    private String token;
     private MainViewModel mainViewModel;
     public static Usuario usuarioReal;
 
@@ -34,12 +34,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mainViewModel= ViewModelProviders.of(this).get(MainViewModel.class);
+        MainActivity.usuarioReal=null;
         setContentView(R.layout.activity_main);
         email=findViewById(R.id.et_email);
         pass=findViewById(R.id.et_pass);
         error=findViewById(R.id.error);
-
-        mainViewModel= ViewModelProviders.of(this).get(MainViewModel.class);
+        boton=findViewById(R.id.bt_entrar);
 
         mainViewModel.getError().observe(this, new Observer<Integer>() {
             @Override
@@ -58,14 +59,17 @@ public class MainActivity extends AppCompatActivity {
                         case "Usuario":
                             Intent i=new Intent(getApplicationContext(),Principal.class);
                             startActivity(i);
+                            //finish();
                             break;
                         case "Coordinador":
                             Intent c= new Intent(getApplicationContext(), CoordMain.class);
                             startActivity(c);
+                            //finish();
                             break;
                         case "Administrador":
                             Intent a = new Intent(getApplicationContext(), AdminMain.class);
                             startActivity(a);
+                            //finish();
                             break;
                     }
                 }
@@ -83,27 +87,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainViewModel.ingresar(email.getText().toString(),pass.getText().toString());
+            }
+        });
     }
-    public void ingresar(android.view.View view){
-
-        mainViewModel.ingresar(email.getText().toString(),pass.getText().toString());
-    }
-
 
 }

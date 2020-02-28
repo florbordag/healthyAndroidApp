@@ -18,17 +18,29 @@
         android:id="@+id/crearUsuario"
         android:name="com.example.finalhealty.administrador.crearYlistarUsuario.CrearUsuario"
         android:label="fragment_crear_usuario"
-        tools:layout="@layout/fragment_crear_usuario" />
+        tools:layout="@layout/fragment_crear_usuario" >
+        <action
+            android:id="@+id/action_crearUsuario_to_listarUsuarios"
+            app:destination="@id/listarUsuarios" />
+    </fragment>
     <fragment
         android:id="@+id/listarUsuarios"
         android:name="com.example.finalhealty.administrador.crearYlistarUsuario.ListarUsuarios"
         android:label="fragment_listar_usuarios"
-        tools:layout="@layout/fragment_listar_usuarios" />
+        tools:layout="@layout/fragment_listar_usuarios" >
+        <action
+            android:id="@+id/action_listarUsuarios_to_listarActividades"
+            app:destination="@id/listarActividades" />
+    </fragment>
     <fragment
         android:id="@+id/listarActividades"
         android:name="com.example.finalhealty.administrador.ListarActividades.ListarActividades"
         android:label="fragment_listar_actividades"
-        tools:layout="@layout/fragment_listar_actividades" />
+        tools:layout="@layout/fragment_listar_actividades" >
+        <action
+            android:id="@+id/action_listarActividades_to_listarEventos"
+            app:destination="@id/listarEventos" />
+    </fragment>
     <fragment
         android:id="@+id/listarEventos"
         android:name="com.example.finalhealty.administrador.ListarEventos.ListarEventos"
@@ -38,5 +50,9 @@
         android:id="@+id/logout_admin"
         android:name="com.example.finalhealty.administrador.Logout.Logout_admin"
         android:label="fragment_logout_admin"
-        tools:layout="@layout/fragment_logout_admin" />
+        tools:layout="@layout/fragment_logout_admin" >
+        <action
+            android:id="@+id/action_logout_admin_to_crearUsuario"
+            app:destination="@id/crearUsuario" />
+    </fragment>
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.finalhealty.administrador;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -21,11 +22,12 @@ import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
 public class AdminMain extends AppCompatActivity {
-    TextView titulo,secundario;
-    ImageView imgPerfil;
+    private TextView titulo,secundario;
+    private ImageView imgPerfil;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private AppBarConfiguration mAppBarConfiguration;
+    private SharedPreferences sp;
 
 
     @Override
@@ -91,6 +93,17 @@ public class AdminMain extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        sp=this.getSharedPreferences("token",0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("token","");
+        editor.commit();
+        MainActivity.usuarioReal=null;
     }
 }
 

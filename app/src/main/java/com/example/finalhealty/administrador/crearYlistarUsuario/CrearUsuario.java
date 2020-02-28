@@ -1,6 +1,8 @@
 package com.example.finalhealty.administrador.crearYlistarUsuario;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -64,7 +66,20 @@ public class CrearUsuario extends Fragment {
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crear();
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Crear usuario")
+                        .setMessage("¿Desea insertar el usuario"+nombre.getText()+" "+apellido.getText().toString()+"en la base de datos?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                crear();
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
             }
         });
 
