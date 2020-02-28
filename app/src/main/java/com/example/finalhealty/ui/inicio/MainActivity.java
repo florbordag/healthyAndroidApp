@@ -76,32 +76,23 @@ public class MainActivity extends AppCompatActivity {
                         case "Usuario":
                             Intent i=new Intent(getApplicationContext(),Principal.class);
                             startActivity(i);
-<<<<<<< HEAD
 
                             //finish();
-=======
                             finish();
->>>>>>> 8b12206cc14ab541e8e413d141974f5f0f3fa200
                             break;
                         case "Coordinador":
                             Intent c= new Intent(getApplicationContext(), CoordMain.class);
                             startActivity(c);
-<<<<<<< HEAD
 
                             //finish();
-=======
                             finish();
->>>>>>> 8b12206cc14ab541e8e413d141974f5f0f3fa200
                             break;
                         case "Administrador":
                             Intent a = new Intent(getApplicationContext(), AdminMain.class);
                             startActivity(a);
-<<<<<<< HEAD
 
                             //finish();
-=======
                             finish();
->>>>>>> 8b12206cc14ab541e8e413d141974f5f0f3fa200
                             break;
                     }
                 }
