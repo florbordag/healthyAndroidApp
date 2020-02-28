@@ -89,6 +89,7 @@ public class FragMisActividades extends Fragment {
             Button button= itemView.findViewById(R.id.btnAbandonar);
             Button buttonEv=itemView.findViewById(R.id.btnCrearEvento);
             if(actividad.getEstado().equals(1)) {
+                buttonEv.setVisibility(View.VISIBLE);
 
                 button.setText("Dar de baja");
 
@@ -112,7 +113,7 @@ public class FragMisActividades extends Fragment {
                     }
                 });
 
-                button.setOnClickListener(new View.OnClickListener() {
+                buttonEv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         new AlertDialog.Builder(getContext())
@@ -141,6 +142,7 @@ public class FragMisActividades extends Fragment {
                 descripcion.setTextColor(getResources().getColor(R.color.light));
                 horario.setTextColor(getResources().getColor(R.color.light));
                 button.setTextColor(getResources().getColor(R.color.light));
+                buttonEv.setVisibility(View.GONE);
 
                 button.setText("Retomar Actividad");
 
