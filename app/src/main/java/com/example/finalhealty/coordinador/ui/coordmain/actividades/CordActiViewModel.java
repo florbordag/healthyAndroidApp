@@ -102,17 +102,13 @@ public class CordActiViewModel extends AndroidViewModel {
         });
     }
 
-    public void eliminarActividad(){
-
-    }
-
     public void crearActividad(Actividad a){
         Call<Actividad> dato=ApiClient.getMyApiClient().crearActividad(token,a);
         dato.enqueue(new Callback<Actividad>() {
             @Override
             public void onResponse(Call<Actividad> call, Response<Actividad> response) {
                 if(response.isSuccessful()){
-                    new ShowToast(context,"La actividad se creo con éxito");
+                    new ShowToast(context,"La actividad se creó con éxito");
                     obtenerMisActividades();
                 }
             }
@@ -130,8 +126,8 @@ public class CordActiViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Actividad> call, Response<Actividad> response) {
                 if(response.isSuccessful()){
-                    new ShowToast(context,"Retomaste la actividad "+
-                            actividad.getTitulo()+" con éxito");
+                    new ShowToast(context,"La actividad "+
+                            actividad.getTitulo()+" se actualizó con éxito");
                     obtenerMisActividades();
                 }
             }

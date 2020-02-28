@@ -6,14 +6,14 @@ public class Actividad {
     private String horario;
     private String descripcion;
     private String fechaUltMod;
-    private String estado;
+    private int estado;
     private String coordinadorId;
     private Usuario Coordinador;
 
     public Actividad() {
     }
 
-    public Actividad(int id, String nombre, String horario, String descripcion, String fechaUltMod, String estado, String coordinadorId) {
+    public Actividad(int id, String nombre, String horario, String descripcion, String fechaUltMod, int estado, String coordinadorId) {
         this.id = id;
         this.nombre = nombre;
         this.horario = horario;
@@ -23,7 +23,7 @@ public class Actividad {
         this.coordinadorId = coordinadorId;
     }
 
-    public Actividad(int id, String nombre, String horario, String descripcion, String fechaUltMod, String estado, Usuario coordinador) {
+    public Actividad(int id, String nombre, String horario, String descripcion, String fechaUltMod, int estado, Usuario coordinador) {
         this.id = id;
         this.nombre = nombre;
         this.horario = horario;
@@ -73,11 +73,11 @@ public class Actividad {
         this.fechaUltMod = fechaUltMod;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 

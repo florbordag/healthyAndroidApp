@@ -88,7 +88,7 @@ public class FragMisActividades extends Fragment {
             horario.setText(actividad.getHorario());
             Button button= itemView.findViewById(R.id.btnAbandonar);
             Button buttonEv=itemView.findViewById(R.id.btnCrearEvento);
-            if(actividad.getEstado().equals(1)) {
+            if(actividad.getEstado()==1) {
                 buttonEv.setVisibility(View.VISIBLE);
 
                 button.setText("Dar de baja");
@@ -102,7 +102,8 @@ public class FragMisActividades extends Fragment {
                                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        cordActiViewModel.eliminarActividad();
+                                        actividad.setEstado(0);
+                                        cordActiViewModel.retomarActividad(actividad);
                                     }
                                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
@@ -155,6 +156,7 @@ public class FragMisActividades extends Fragment {
                                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
+                                        actividad.setEstado(1);
                                         cordActiViewModel.retomarActividad(actividad);
                                     }
                                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {

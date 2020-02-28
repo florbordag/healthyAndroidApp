@@ -14,19 +14,23 @@
         <activity
             android:name=".ui.inicio.Principal"
             android:label="@string/title_activity_principal"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".coordinador.CoordMain"
             android:label="@string/title_activity_coord"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".administrador.AdminMain"
             android:label="@string/title_activity_Admin"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.actividades.ActividadesFragment"
             android:label="@string/menu_actividades"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".ui.inicio.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
