@@ -146,8 +146,7 @@ public class CordActiViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Evento> call, Response<Evento> response) {
                 if(response.isSuccessful()){
-                    new ShowToast(context,"Has creado un nuevo evento "+evento.getTitulo()+
-                            " para la actividad "+evento.getActividad().getTitulo());
+                    new ShowToast(context,"Has creado un nuevo evento "+evento.getTitulo());
                     obtenerMisActividades();
                 }
             }
