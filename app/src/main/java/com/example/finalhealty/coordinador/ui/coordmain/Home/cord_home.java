@@ -39,7 +39,6 @@ public class cord_home extends Fragment {
         actiMias=root.findViewById(R.id.tvActiPropiasCord);
         actiTotales= root.findViewById(R.id.tvTotalActiviCord);
         eventMios= root.findViewById(R.id.tvEventPropios);
-        inscriptosMisEvent= root.findViewById(R.id.tvInscriptosMisEvent);
         evenTotales= root.findViewById(R.id.tvTotalEvenCord);
 
         passCord= root.findViewById(R.id.tvPassCoord);

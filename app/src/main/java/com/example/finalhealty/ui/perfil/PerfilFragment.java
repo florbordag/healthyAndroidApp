@@ -60,9 +60,7 @@ public class PerfilFragment extends Fragment {
         editarUsuario= root.findViewById(R.id.editarUsuario);
         editarPass = root.findViewById(R.id.editarPass);
         sw= root.findViewById(R.id.swFuma);
-       // foto= root.findViewById(R.id.fotoperfil);
         foto= root.findViewById(R.id.fotoperfil);
-       // titulo=root.findViewById(R.id.titulo);
 
 
         editarUsuario.setOnClickListener(new View.OnClickListener() {
