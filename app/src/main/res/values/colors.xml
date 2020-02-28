@@ -6,4 +6,6 @@
     <color name="backgroundAdmin">#FFDAB3</color>
     <color name="backgroundCoor">#FFE5CB</color>
     <color name="backgroundUser">#FCE6DB</color>
+    <color name="light">#636262</color>
+
 </resources>

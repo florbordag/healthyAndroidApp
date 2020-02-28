@@ -84,15 +84,34 @@ public class FragMisEventos extends Fragment {
             TextView horario=itemView.findViewById(R.id.horarioEvento);
             horario.setText(evento.getFechaHora());
             Button button= itemView.findViewById(R.id.btnAbandonarEvento);
-            button.setText("Abandonar");
+            button.setText("Dar de baja");
+
+            if(evento.getEstado()==0){
+                nombre.setTextColor(getResources().getColor(R.color.light));
+                descripcion.setTextColor(getResources().getColor(R.color.light));
+                horario.setTextColor(getResources().getColor(R.color.light));
+                button.setVisibility(View.GONE);
+            }
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getActivity(), "Funciona   "+ evento.getTitulo(),Toast.LENGTH_LONG).show();
-                    //MisEventos= desinscribirYreordenar(evento);
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Abandonar")
+                            .setMessage("¿Desea abandonar el evento "+evento.getTitulo()+"?")
+                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    cordEventoViewModel.darDeBaja(evento);
+                                }
+                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
+                        }
+                    }).show();
                 }});
+
 
             return itemView;
         }

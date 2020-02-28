@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.finalhealty.model.Usuario;
+import com.example.finalhealty.ui.inicio.MainActivity;
 
 public class LogoutCoordViewModel extends AndroidViewModel {
     private Context context;
@@ -25,6 +26,7 @@ public class LogoutCoordViewModel extends AndroidViewModel {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("token" , "");
         editor.commit();
+        MainActivity.usuarioReal=null;
     }
 
 }

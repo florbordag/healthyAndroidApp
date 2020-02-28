@@ -116,6 +116,7 @@ public class Principal extends AppCompatActivity {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("token","");
         editor.commit();
+        MainActivity.usuarioReal=null;
     }
 }
 

@@ -145,7 +145,7 @@ public class ActividadesViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<Actividad> call, Throwable t) {
-
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
     }

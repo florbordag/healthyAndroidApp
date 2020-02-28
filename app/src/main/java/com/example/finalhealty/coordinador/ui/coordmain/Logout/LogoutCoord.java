@@ -46,6 +46,7 @@ public class LogoutCoord extends Fragment {
                         logoutCoordViewModel.logOut();
                         Intent i = new Intent(getContext(), MainActivity.class);
                         startActivity(i);
+                        getActivity().finish();
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override

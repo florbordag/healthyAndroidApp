@@ -21,12 +21,12 @@ import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
 public class AdminMain extends AppCompatActivity {
-    TextView titulo,secundario;
-    ImageView imgPerfil;
+    private TextView titulo,secundario;
+    private ImageView imgPerfil;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private AppBarConfiguration mAppBarConfiguration;
-    SharedPreferences sp;
+    private SharedPreferences sp;
 
 
     @Override
@@ -97,6 +97,7 @@ public class AdminMain extends AppCompatActivity {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("token","");
         editor.commit();
+        MainActivity.usuarioReal=null;
     }
 }
 

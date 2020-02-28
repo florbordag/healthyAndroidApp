@@ -21,8 +21,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
 public class CoordMain extends AppCompatActivity {
-    TextView titulo,secundario;
-    ImageView imgPerfil;
+    private TextView titulo,secundario;
+    private ImageView imgPerfil;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private AppBarConfiguration mAppBarConfiguration;
@@ -98,5 +98,6 @@ public class CoordMain extends AppCompatActivity {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("token","");
         editor.commit();
+        MainActivity.usuarioReal=null;
     }
 }
