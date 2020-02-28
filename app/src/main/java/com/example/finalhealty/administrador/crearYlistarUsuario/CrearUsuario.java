@@ -42,7 +42,7 @@ public class CrearUsuario extends Fragment {
         mail= root.findViewById(R.id.etCrearMail);
         nombre= root.findViewById(R.id.etCrearNombre);
         apellido= root.findViewById(R.id.etCrearApellido);
-        dni= root.findViewById(R.id.etCrearApellido);
+        dni= root.findViewById(R.id.etCrearDni);
         pass= root.findViewById(R.id.etCrearPassword);
         fecNac= root.findViewById(R.id.etCrearFecnac);
 
