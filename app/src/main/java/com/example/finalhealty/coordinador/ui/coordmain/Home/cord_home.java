@@ -45,7 +45,15 @@ public class cord_home extends Fragment {
         ((CoordMain) getActivity()).setActionBarTitle("Coordinadores - Home");
 
         inicializarElementos(root);
+        
         totales=0;mias=0;totalas=0;mios=0;totulus=0;
+        userTotales= root.findViewById(R.id.tvCantUserCord);
+        actiMias=root.findViewById(R.id.tvActiPropiasCord);
+        actiTotales= root.findViewById(R.id.tvTotalActiviCord);
+        eventMios= root.findViewById(R.id.tvEventPropios);
+        evenTotales= root.findViewById(R.id.tvTotalEvenCord);
+        passCord= root.findViewById(R.id.tvPassCoord);
+        editarPass= root.findViewById(R.id.editarPassCoord);
 
         editarPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +78,6 @@ public class cord_home extends Fragment {
         actiTotales= root.findViewById(R.id.tvTotalActiviCord);
         eventMios= root.findViewById(R.id.tvEventPropios);
         evenTotales= root.findViewById(R.id.tvTotalEvenCord);
-
         passCord= root.findViewById(R.id.tvPassCoord);
         editarPass= root.findViewById(R.id.editarPassCoord);
     }

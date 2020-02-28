@@ -173,7 +173,8 @@
                 android:id="@+id/horaProxEvento"
                 android:layout_width="338dp"
                 android:layout_height="25dp"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:textAlignment="center"/>
         </LinearLayout>
         </LinearLayout>
     </ScrollView>

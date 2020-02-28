@@ -124,11 +124,24 @@ public class FragMisActividades extends Fragment {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
 
-       //
-//                      //
-                                                         //
+
+
+
+
+
                   ////////////////////////METODO QUE DEBE LLAMAR EL FLOTANTE CUANDO TENGA LOS DATOS DEL EVENTO
+
+
+
+
+
+                                        /////////
            //                             cordActiViewModel.crearEvento(xxxx);
+
+
+
+
+
                                     }
                                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
@@ -172,5 +185,9 @@ public class FragMisActividades extends Fragment {
             return itemView;
         }
     }
+
+
+
+
 
 }

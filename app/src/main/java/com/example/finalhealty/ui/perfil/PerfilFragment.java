@@ -61,7 +61,7 @@ public class PerfilFragment extends Fragment {
         editarPass = root.findViewById(R.id.editarPass);
         sw= root.findViewById(R.id.swFuma);
         foto= root.findViewById(R.id.fotoperfil);
-        titulo=root.findViewById(R.id.titulo);
+
 
         editarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,8 +128,6 @@ public class PerfilFragment extends Fragment {
 
 
     public void fijarDatos(Usuario sesion){
-
-        cargarFotoPerfil(sesion.getFotoPerfil());
         nombre.setText(sesion.getNombre());
         apellido.setText(sesion.getApellido());
         dni.setText(sesion.getDni());
@@ -139,9 +137,9 @@ public class PerfilFragment extends Fragment {
         int fuma= sesion.getFumador();
         if(fuma==0){sw.setChecked(false);}else {sw.setChecked(true);}
 
-        editarUsuario.setImageDrawable(getResources().getDrawable(R.drawable.edit));
-        ((Principal)getActivity()).setActionBarTitle(sesion.getNombre()+" "+sesion.getApellido());
-        titulo.setText(sesion.getNombre()+" "+sesion.getApellido());
+
+        editarUsuario.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_edit));
+
     }
 
     public void cargarFotoPerfil(String url){

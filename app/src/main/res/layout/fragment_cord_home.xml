@@ -53,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:text="Usuarios en plataforma: "
+                    android:text="Usuarios en plataforma:  "
                     android:textColor="@android:color/black"
                     android:textSize="18dp" />
 
@@ -168,41 +168,6 @@
 
 
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageEventoInsc"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/event_woman" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="26dp"
-                    android:text="Inscriptos a mis eventos:"
-                    android:textColor="@android:color/black"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/tvInscriptosMisEvent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="xxx"
-                    android:textSize="18dp" />
-
-
-            </LinearLayout>
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -262,8 +227,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="86dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="30dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView7"
@@ -283,17 +247,18 @@
                     android:inputType="textPassword"
                     android:text="20/20/20"
                     android:textColor="@android:color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:focusable="false"/>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/editarPassCoord"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:clickable="true"
                     android:layout_marginStart="30dp"
-                    app:backgroundTint="@android:color/background_light"
-                    app:srcCompat="@drawable/edit" />
+                    android:clickable="true"
+                    app:backgroundTint="@color/botones"
+                    app:srcCompat="@android:drawable/ic_menu_edit" />
 
             </LinearLayout>
 
