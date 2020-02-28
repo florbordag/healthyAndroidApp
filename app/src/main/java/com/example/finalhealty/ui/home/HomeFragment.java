@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private Usuario user= MainActivity.usuarioReal;
-    private TextView tituloEvento;
+    private TextView tituloEvento, consejo, nohayActis;
     private TextView descripEvento;
 
 
@@ -43,7 +43,8 @@ public class HomeFragment extends Fragment {
 
         tituloEvento = root.findViewById(R.id.tituloProxEvento);
         descripEvento= root.findViewById(R.id.horaProxEvento);
-
+        consejo = root.findViewById(R.id.consejo_home);
+        nohayActis=root.findViewById(R.id.tvNohayActis);
         cargarActividades(root);
         cargarEventos(root);
 
@@ -58,6 +59,10 @@ public class HomeFragment extends Fragment {
         homeViewModel.getMiActividadMutableLiveData().observe(this, new Observer<List<Actividad>>() {
             @Override
             public void onChanged(List<Actividad> actividads) {
+
+                     nohayActis.setVisibility(View.INVISIBLE);
+
+
                 ArrayAdapter<Actividad> adapter =new ListaAdapter(getContext(),R.layout.short_item, actividads, getLayoutInflater() );
                 ListView lv = view.findViewById(R.id.listaActividades);
                 lv.setAdapter(adapter);
@@ -103,7 +108,7 @@ public class HomeFragment extends Fragment {
                 itemView=li.inflate(R.layout.short_item,parent,false);
             }
             Actividad actividad=actividadList.get(position);
-            Button nombre= itemView.findViewById(R.id.nameactivity);
+            TextView nombre= itemView.findViewById(R.id.nameactivity);
             nombre.setText(actividad.getTitulo());
             TextView horario=itemView.findViewById(R.id.tvhorarioAct);
             horario.setText(actividad.getHorario());

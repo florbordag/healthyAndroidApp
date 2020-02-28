@@ -83,9 +83,9 @@
 
             <ImageView
                 android:id="@+id/imageAct"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/activi"/>
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/exercise"/>
 
             <TextView
                 android:id="@+id/textView17"
@@ -115,8 +115,8 @@
 
             <ImageView
                 android:id="@+id/imageEvent"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:src="@drawable/eventos" />
 
             <TextView

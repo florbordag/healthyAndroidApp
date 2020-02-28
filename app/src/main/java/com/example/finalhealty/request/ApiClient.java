@@ -27,7 +27,10 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
+public class ApiClient {
+    //https://healthy2020-ih7.conveyor.cloud/
+    // https://healthy2020.conveyor.cloud/Api/
+    // http://192.168.0.11:45455/Api/
     private static final String PATH="https://healthy2020.conveyor.cloud/Api/";
     private static  MyApiInterface myApiInteface;
 

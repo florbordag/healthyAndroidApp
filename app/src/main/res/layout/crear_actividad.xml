@@ -15,15 +15,15 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/etNombreActivi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="nombre de actividAD"
-                android:textAlignment="center"
-                android:textSize="18dp" />
+    <EditText
+        android:id="@+id/etNombreActivi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Titulo"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="18dp" />
 
 
 
@@ -37,15 +37,15 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/etHorarioActivi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="fecha y hora"
-                android:textAlignment="center"
-                android:textSize="18dp" />
+    <EditText
+        android:id="@+id/etHorarioActivi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Fecha y hora"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -64,6 +64,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Descripcion de la actividad"
+        android:textAlignment="center"
         android:inputType="textMultiLine" />
 
 
