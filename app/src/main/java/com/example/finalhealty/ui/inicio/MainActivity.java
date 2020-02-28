@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel= ViewModelProviders.of(this).get(MainViewModel.class);
         MainActivity.usuarioReal=null;
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+
         email=findViewById(R.id.et_email);
         pass=findViewById(R.id.et_pass);
         error=findViewById(R.id.error);
         boton=findViewById(R.id.bt_entrar);
+
 
         mainViewModel.getError().observe(this, new Observer<Integer>() {
             @Override
@@ -65,23 +69,26 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(Usuario usuario) {
 
                 usuarioReal= usuario;
-                if(usuario.getFotoPerfil()==null){usuarioReal.setFotoPerfil("https://www.shantiyoga.com.au/wp-content/uploads/default-avatar3.png");}
+
 
                 if(usuarioReal!=null){
                     switch(usuarioReal.getRol()){
                         case "Usuario":
                             Intent i=new Intent(getApplicationContext(),Principal.class);
                             startActivity(i);
+
                             //finish();
                             break;
                         case "Coordinador":
                             Intent c= new Intent(getApplicationContext(), CoordMain.class);
                             startActivity(c);
+
                             //finish();
                             break;
                         case "Administrador":
                             Intent a = new Intent(getApplicationContext(), AdminMain.class);
                             startActivity(a);
+
                             //finish();
                             break;
                     }

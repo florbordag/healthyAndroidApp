@@ -20,9 +20,9 @@
             <ImageView
                 android:id="@+id/fotoperfil"
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
+                android:layout_height="87dp"
                 android:layout_marginTop="18dp"
-                app:srcCompat="@drawable/foto_perfil" />
+                app:srcCompat="@drawable/user_generic" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                     android:id="@+id/tvnombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
                     android:background="@null"
                     android:enabled="false"
@@ -56,14 +56,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="20dp"
                     android:text="Apellido: "
                     android:textSize="20dp" />
 
@@ -72,7 +72,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
                     android:background="@null"
                     android:text="Apellido"
                     android:textColor="@android:color/black"
@@ -83,13 +82,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="20dp"
                     android:text="Dni: "
                     android:textSize="20dp" />
 
@@ -99,7 +98,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="62dp"
                     android:background="@null"
-                    android:layout_marginTop="20dp"
                     android:text="Dni"
                     android:textColor="@android:color/black"
                     android:textSize="20dp"
@@ -109,13 +107,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="20dp"
                     android:text="Mail:"
                     android:textSize="20dp" />
 
@@ -124,7 +122,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="55dp"
-                    android:layout_marginTop="20dp"
                     android:background="@null"
                     android:text="mail"
                     android:textColor="@android:color/black"
@@ -138,13 +135,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
-                    android:layout_height="23dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="20dp"
                     android:text="Cumpleaños: "
                     android:textSize="20dp" />
 
@@ -153,7 +150,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
                     android:text="20/20/20"
                     android:background="@null"
                     android:textSize="20dp"
@@ -198,8 +194,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:clickable="true"
-                app:backgroundTint="@android:color/background_light"
-                app:srcCompat="@drawable/edit" />
+                android:backgroundTint="@color/botones"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
 
 
             <LinearLayout
@@ -233,8 +229,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:clickable="true"
-                    app:backgroundTint="@android:color/background_light"
-                    app:srcCompat="@drawable/edit" />
+                    android:layout_marginLeft="30dp"
+                    android:backgroundTint="@color/botones"
+                    app:srcCompat="@android:drawable/ic_menu_edit" />
 
             </LinearLayout>
 
