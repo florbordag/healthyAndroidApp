@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,6 +55,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(String s) {
 
+                mainViewModel.leer();
+
+            }
+        });
+
+        mainViewModel.getUsuarioMutableLiveData().observe(this, new Observer<Usuario>() {
+            @Override
+            public void onChanged(Usuario usuario) {
+
+                usuarioReal= usuario;
+                if(usuario.getFotoPerfil()==null){usuarioReal.setFotoPerfil("https://www.shantiyoga.com.au/wp-content/uploads/default-avatar3.png");}
+
                 if(usuarioReal!=null){
                     switch(usuarioReal.getRol()){
                         case "Usuario":
@@ -73,14 +86,6 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
                 }
-            }
-        });
-        mainViewModel.getUsuarioMutableLiveData().observe(this, new Observer<Usuario>() {
-            @Override
-            public void onChanged(Usuario usuario) {
-
-                usuarioReal= usuario;
-                if(usuario.getFotoPerfil()==null){usuarioReal.setFotoPerfil("https://www.shantiyoga.com.au/wp-content/uploads/default-avatar3.png");}
 
 
             }
@@ -94,5 +99,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }

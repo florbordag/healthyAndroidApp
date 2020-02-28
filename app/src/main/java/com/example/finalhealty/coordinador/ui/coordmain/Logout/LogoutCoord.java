@@ -45,6 +45,7 @@ public class LogoutCoord extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         logoutCoordViewModel.logOut();
                         Intent i = new Intent(getContext(), MainActivity.class);
+                        i.putExtra("finish", true);
                         startActivity(i);
                         getActivity().finish();
                     }

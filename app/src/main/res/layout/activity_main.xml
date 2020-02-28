@@ -18,7 +18,7 @@
         android:id="@+id/error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Datos inválidos"
+        android:text="Usuario no registrado"
         android:textAlignment="center"
         android:textColor="#FF0000"
         android:textSize="15dp"

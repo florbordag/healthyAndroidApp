@@ -68,7 +68,7 @@ public class CrearUsuario extends Fragment {
             public void onClick(View v) {
                 new AlertDialog.Builder(getContext())
                         .setTitle("Crear usuario")
-                        .setMessage("¿Desea insertar el usuario"+nombre.getText()+" "+apellido.getText().toString()+"en la base de datos?")
+                        .setMessage("¿Desea insertar el usuario "+nombre.getText()+" "+apellido.getText().toString()+" en la base de datos?")
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

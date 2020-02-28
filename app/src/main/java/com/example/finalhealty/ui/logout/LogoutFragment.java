@@ -54,6 +54,7 @@ public class LogoutFragment extends Fragment {
 
                 Intent i = new Intent(getContext(), Principal.class);
                 startActivity(i);
+                getActivity().finish();
             }
         }).show();
     }
