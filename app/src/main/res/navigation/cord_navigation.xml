@@ -25,4 +25,9 @@
         android:name="com.example.finalhealty.coordinador.ui.coordmain.Logout.LogoutCoord"
         android:label="fragment_logout_coord"
         tools:layout="@layout/fragment_logout_coord" />
+    <fragment
+        android:id="@+id/entregarMedalla"
+        android:name="com.example.finalhealty.coordinador.ui.coordmain.entregaMedallas.EntregarMedalla"
+        android:label="fragment_entregar_medalla"
+        tools:layout="@layout/fragment_entregar_medalla" />
 </navigation>

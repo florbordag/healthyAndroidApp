@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">finalHealty</string>
+    <string name="app_name">Healthy</string>
     <string name="title_activity_principal">Principal</string>
     <string name="title_activity_coord">Coordinador</string>
     <string name="title_activity_Admin">Administrador</string>
@@ -27,17 +27,24 @@
     <string name="login_failed">"Error al iniciar sesión. Las credenciales no son correctas. Intente nuevamente."</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="entregarMedalla">Entregar Medalla</string>
 
     <string name="admin_home">Inicio</string>
     <string name="crear_usuario">Crear usuario</string>
     <string name="listarUsuarios">Listar Usuarios</string>
     <string name="listarActividades">Listar actividades</string>
     <string name="listarEventos">Listar eventos</string>
-
+    <string name="mailpredefinido">/@healthy.com</string>
 
     <string-array name="roles">
         <item>Administrador</item>
         <item>Coordinador</item>
         <item>Usuario</item>
+    </string-array>
+
+    <string-array name="coloresMedalla">
+        <item>Oro</item>
+        <item>Plata</item>
+        <item>Bronce</item>
     </string-array>
 </resources>

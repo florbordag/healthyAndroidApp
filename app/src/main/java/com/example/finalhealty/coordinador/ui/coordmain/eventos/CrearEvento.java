@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +22,7 @@ public class CrearEvento extends Fragment {
     private View v;
     private EditText nombre, descripcion, horario;
     private Button boton;
+    private Spinner spinnerActividades;
 
     @Nullable
     @Override
@@ -27,7 +30,7 @@ public class CrearEvento extends Fragment {
         cordEventoViewModel =
                 ViewModelProviders.of(this).get(CordEventoViewModel.class);
         v = inflater.inflate(R.layout.crear_evento, container, false);
-
+        spinnerActividades= v.findViewById(R.id.spinnerActivCrearEvento);
         nombre=v.findViewById(R.id.etTituloEvento);
         descripcion=v.findViewById(R.id.etDescripEvento);
         horario=v.findViewById(R.id.etHorarioEvento);
@@ -38,6 +41,14 @@ public class CrearEvento extends Fragment {
                 crear();
             }
         });
+
+
+
+
+//No se como llenarlo con objetos.......
+ //spinnerActividades.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.crear_evento,listaTituloActividades));
+
+
 
         return v;
     }

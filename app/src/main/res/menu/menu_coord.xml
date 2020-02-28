@@ -15,6 +15,11 @@ tools:showIn="nv">
     android:icon="@drawable/icon_evento"
     android:title="@string/menu_eventos" />
 
+        <item
+            android:id="@+id/entregarMedalla"
+            android:icon="@drawable/icon_medal"
+            android:title="@string/entregarMedalla" />
+
         <item android:title="Salir">
                 <menu>
 

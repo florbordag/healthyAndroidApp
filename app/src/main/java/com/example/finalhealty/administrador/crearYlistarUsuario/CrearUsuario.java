@@ -49,17 +49,17 @@ public class CrearUsuario extends Fragment {
         spinnerRol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id)
-            {
+        public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id)
+        {
 
-                rolSeleccionado= (String) adapterView.getItemAtPosition(pos);
-                Toast.makeText(adapterView.getContext(),rolSeleccionado, Toast.LENGTH_SHORT).show();
-            }
+            rolSeleccionado= (String) adapterView.getItemAtPosition(pos);
+            Toast.makeText(adapterView.getContext(),rolSeleccionado, Toast.LENGTH_SHORT).show();
+        }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {    }
-        });
+        @Override
+        public void onNothingSelected(AdapterView<?> parent)
+        {    }
+    });
 
         boton.setOnClickListener(new View.OnClickListener() {
             @Override

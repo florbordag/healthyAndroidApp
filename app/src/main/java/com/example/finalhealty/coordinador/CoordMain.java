@@ -52,7 +52,7 @@ public class CoordMain extends AppCompatActivity {
 
          mAppBarConfiguration = new AppBarConfiguration.Builder(
                  R.id.cord_home, R.id.cord_actividades,
-                R.id.cord_eventos)
+                R.id.cord_eventos, R.id.entregarMedalla)
                 .setDrawerLayout(drawer)
                 .build();
 

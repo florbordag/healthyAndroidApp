@@ -1,6 +1,7 @@
 package com.example.finalhealty.administrador;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,11 +38,8 @@ public class AdminMain extends AppCompatActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_admin);
         NavigationView navigationView = findViewById(R.id.nv_admin);
-        /////
 
-
-        NavigationView nv;  nv = findViewById(R.id.nv_admin);
-        View hView = nv.getHeaderView(0);
+        View hView = navigationView.getHeaderView(0);
         titulo = hView.findViewById(R.id.titulo_menuadmin) ;
         imgPerfil = hView.findViewById(R.id.foto_menu_admin);
         secundario= hView.findViewById(R.id.secundario_menuadmin);
@@ -61,6 +59,14 @@ public class AdminMain extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.adminstrador, menu);
+        return true;
+    }
+
 
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_admin);
