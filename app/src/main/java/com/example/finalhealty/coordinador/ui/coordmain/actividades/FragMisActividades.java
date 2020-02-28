@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.finalhealty.R;
 import com.example.finalhealty.model.Actividad;
+import com.example.finalhealty.model.Evento;
 import com.example.finalhealty.ui.actividades.ActividadesViewModel;
 import com.example.finalhealty.ui.inicio.MainActivity;
 
@@ -29,6 +31,8 @@ import java.util.List;
 
 public class FragMisActividades extends Fragment {
     private CordActiViewModel cordActiViewModel;
+    private String tituloCrearEvento, horarioCrearEvento, descripcionCrearEvento;
+    private int idActividad;
     private View v;
 
 
@@ -127,14 +131,13 @@ public class FragMisActividades extends Fragment {
 
 
 
-
-
                   ////////////////////////METODO QUE DEBE LLAMAR EL FLOTANTE CUANDO TENGA LOS DATOS DEL EVENTO
 
 
 
+                                        idActividad= actividad.getId();
 
-
+                                            DialogoNuevoEvento();
                                         /////////
            //                             cordActiViewModel.crearEvento(xxxx);
 
@@ -187,6 +190,47 @@ public class FragMisActividades extends Fragment {
     }
 
 
+    public void DialogoNuevoEvento(){
+
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        final View textenter = inflater.inflate(R.layout.crear_evento, null);
+        final EditText titulo = textenter.findViewById(R.id.etTituloEvento);
+        final EditText horario = textenter.findViewById(R.id.etHorarioEvento);
+        final EditText descripcion = textenter.findViewById(R.id.etDescripEvento);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(textenter)
+                .setTitle("Ingrese los datos del evento:");
+        builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                tituloCrearEvento=  titulo.getText().toString();
+                horarioCrearEvento =  horario.getText().toString();
+                descripcionCrearEvento=  descripcion.getText().toString();
+                if(!tituloCrearEvento.equals("")&&!descripcionCrearEvento.equals("")&&!horarioCrearEvento.equals("")){
+                    //
+                    Evento e = new Evento();
+
+                    e.setTitulo(tituloCrearEvento);
+                    e.setFechaHora(horarioCrearEvento);
+                    e.setDescripcion(descripcionCrearEvento);
+                    e.setActividadId(idActividad);
+
+                    cordActiViewModel.crearEvento(e);
+
+
+                }
+            }
+        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+    }
 
 
 

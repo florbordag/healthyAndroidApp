@@ -29,7 +29,6 @@ public class CrearEvento extends Fragment {
     private CordEventoViewModel cordEventoViewModel;
     private View v;
     private EditText nombre, descripcion, horario;
-    private Button boton;
     //private Spinner spinnerActividades;
 
     @Nullable
@@ -43,17 +42,6 @@ public class CrearEvento extends Fragment {
         nombre=v.findViewById(R.id.etTituloEvento);
         descripcion=v.findViewById(R.id.etDescripEvento);
         horario=v.findViewById(R.id.etHorarioEvento);
-        boton=v.findViewById(R.id.crearEvento);
-        boton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                crear();
-            }
-        });
-
-        //spinnerActividades.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.crear_evento,actividades));
-
-
 
 
         return v;
