@@ -87,7 +87,9 @@ public class FragMisActividades extends Fragment {
             TextView horario=itemView.findViewById(R.id.tvHorario);
             horario.setText(actividad.getHorario());
             Button button= itemView.findViewById(R.id.btnAbandonar);
-            if(actividad.getEstado().equals(1)) {
+            Button buttonEv=itemView.findViewById(R.id.btnCrearEvento);
+            if(actividad.getEstado()==1) {
+                buttonEv.setVisibility(View.VISIBLE);
 
                 button.setText("Dar de baja");
 
@@ -100,7 +102,33 @@ public class FragMisActividades extends Fragment {
                                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        cordActiViewModel.eliminarActividad();
+                                        actividad.setEstado(0);
+                                        cordActiViewModel.retomarActividad(actividad);
+                                    }
+                                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                    }
+                });
+
+                buttonEv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Nuevo Evento")
+                                .setMessage("¿Desea agregar un nuevo evento para la actividad "+actividad.getTitulo()+"?")
+                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+       //
+//                      //
+                                                         //
+                  ////////////////////////METODO QUE DEBE LLAMAR EL FLOTANTE CUANDO TENGA LOS DATOS DEL EVENTO
+           //                             cordActiViewModel.crearEvento(xxxx);
                                     }
                                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
@@ -115,6 +143,7 @@ public class FragMisActividades extends Fragment {
                 descripcion.setTextColor(getResources().getColor(R.color.light));
                 horario.setTextColor(getResources().getColor(R.color.light));
                 button.setTextColor(getResources().getColor(R.color.light));
+                buttonEv.setVisibility(View.GONE);
 
                 button.setText("Retomar Actividad");
 
@@ -127,6 +156,7 @@ public class FragMisActividades extends Fragment {
                                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
+                                        actividad.setEstado(1);
                                         cordActiViewModel.retomarActividad(actividad);
                                     }
                                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {

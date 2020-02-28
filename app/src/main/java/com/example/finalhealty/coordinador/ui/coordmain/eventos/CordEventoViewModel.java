@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.finalhealty.ShowToast;
+import com.example.finalhealty.model.Actividad;
 import com.example.finalhealty.model.Evento;
 import com.example.finalhealty.model.Usuario;
 import com.example.finalhealty.request.ApiClient;
@@ -101,4 +102,6 @@ public class CordEventoViewModel extends AndroidViewModel {
             }
         });
     }
+
+
 }

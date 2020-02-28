@@ -1,5 +1,6 @@
 package com.example.finalhealty.coordinador.ui.coordmain.eventos;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +16,21 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.finalhealty.R;
+import com.example.finalhealty.coordinador.ui.coordmain.actividades.CordActiViewModel;
+import com.example.finalhealty.model.Actividad;
 import com.example.finalhealty.model.Evento;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
 
 public class CrearEvento extends Fragment {
     private CordEventoViewModel cordEventoViewModel;
     private View v;
     private EditText nombre, descripcion, horario;
     private Button boton;
-    private Spinner spinnerActividades;
+    //private Spinner spinnerActividades;
 
     @Nullable
     @Override
@@ -30,7 +38,8 @@ public class CrearEvento extends Fragment {
         cordEventoViewModel =
                 ViewModelProviders.of(this).get(CordEventoViewModel.class);
         v = inflater.inflate(R.layout.crear_evento, container, false);
-        spinnerActividades= v.findViewById(R.id.spinnerActivCrearEvento);
+
+        //spinnerActividades= v.findViewById(R.id.spinnerActivCrearEvento);
         nombre=v.findViewById(R.id.etTituloEvento);
         descripcion=v.findViewById(R.id.etDescripEvento);
         horario=v.findViewById(R.id.etHorarioEvento);
@@ -42,11 +51,8 @@ public class CrearEvento extends Fragment {
             }
         });
 
+        //spinnerActividades.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.crear_evento,actividades));
 
-
-
-//No se como llenarlo con objetos.......
- //spinnerActividades.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.crear_evento,listaTituloActividades));
 
 
 
@@ -66,4 +72,6 @@ public class CrearEvento extends Fragment {
         nombre.setText("");
         descripcion.setText("");
     }
+
+
 }

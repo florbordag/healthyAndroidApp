@@ -43,6 +43,8 @@ public class PerfilFragment extends Fragment {
     private Switch sw;
     private Usuario user= MainActivity.usuarioReal;
     private String pass1,pass2,pass3;
+    private TextView titulo;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_perfil, container, false);
@@ -58,7 +60,12 @@ public class PerfilFragment extends Fragment {
         editarUsuario= root.findViewById(R.id.editarUsuario);
         editarPass = root.findViewById(R.id.editarPass);
         sw= root.findViewById(R.id.swFuma);
+<<<<<<< HEAD
        // foto= root.findViewById(R.id.fotoperfil);
+=======
+        foto= root.findViewById(R.id.fotoperfil);
+        titulo=root.findViewById(R.id.titulo);
+>>>>>>> 8b12206cc14ab541e8e413d141974f5f0f3fa200
 
         editarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +126,7 @@ public class PerfilFragment extends Fragment {
         sw.setEnabled(false);
 
         perfilViewModel.putUsuario(user);
+        MainActivity.usuarioReal=user;
     }
 
 
@@ -134,7 +142,13 @@ public class PerfilFragment extends Fragment {
         int fuma= sesion.getFumador();
         if(fuma==0){sw.setChecked(false);}else {sw.setChecked(true);}
 
+<<<<<<< HEAD
         editarUsuario.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_edit));
+=======
+        editarUsuario.setImageDrawable(getResources().getDrawable(R.drawable.edit));
+        ((Principal)getActivity()).setActionBarTitle(sesion.getNombre()+" "+sesion.getApellido());
+        titulo.setText(sesion.getNombre()+" "+sesion.getApellido());
+>>>>>>> 8b12206cc14ab541e8e413d141974f5f0f3fa200
     }
 
     public void cargarFotoPerfil(String url){

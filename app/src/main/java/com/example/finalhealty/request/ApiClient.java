@@ -31,7 +31,8 @@ public class ApiClient {
     //https://healthy2020-ih7.conveyor.cloud/
     // https://healthy2020.conveyor.cloud/Api/
     // http://192.168.0.11:45455/Api/
-    private static final String PATH="https://healthy2020.conveyor.cloud/Api/";
+    // http://10.75.220.46:45455/
+    private static final String PATH="http://10.75.220.46:45455/Api/";
     private static  MyApiInterface myApiInteface;
 
     public static MyApiInterface getMyApiClient(){
@@ -151,13 +152,16 @@ public class ApiClient {
         Call<List<Actividad>> getActividadesDisponiblesCoord(@Header("Authorization")String token);
 
         @PUT("Actividad/{id}")
-        Call<Evento> putEvento(
+        Call<Actividad> putEvento(
                 @Header("Authorization")String token,
                 @Path("id") int id,
                 @Body Actividad actividad);
 
         @POST("Actividad")
         Call<Actividad> crearActividad(@Header("Authorization")String token, @Body Actividad a);
+
+        @DELETE("Actividad")
+        Call<Actividad> eliminar(@Header("Authorization")String token,@Body Actividad actividad);
 
         //MedallaVirtual
         @POST("MedallaVirtual")

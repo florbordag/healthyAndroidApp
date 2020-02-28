@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.finalhealty.ShowToast;
 import com.example.finalhealty.model.Actividad;
+import com.example.finalhealty.model.Evento;
 import com.example.finalhealty.model.Usuario;
 import com.example.finalhealty.request.ApiClient;
 
@@ -101,17 +102,13 @@ public class CordActiViewModel extends AndroidViewModel {
         });
     }
 
-    public void eliminarActividad(){
-
-    }
-
     public void crearActividad(Actividad a){
         Call<Actividad> dato=ApiClient.getMyApiClient().crearActividad(token,a);
         dato.enqueue(new Callback<Actividad>() {
             @Override
             public void onResponse(Call<Actividad> call, Response<Actividad> response) {
                 if(response.isSuccessful()){
-                    new ShowToast(context,"La actividad se creo con éxito");
+                    new ShowToast(context,"La actividad se creó con éxito");
                     obtenerMisActividades();
                 }
             }
@@ -129,8 +126,8 @@ public class CordActiViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Actividad> call, Response<Actividad> response) {
                 if(response.isSuccessful()){
-                    new ShowToast(context,"Retomaste la actividad "+
-                            actividad.getTitulo()+" con éxito");
+                    new ShowToast(context,"La actividad "+
+                            actividad.getTitulo()+" se actualizó con éxito");
                     obtenerMisActividades();
                 }
             }
@@ -141,6 +138,25 @@ public class CordActiViewModel extends AndroidViewModel {
             }
         });
 
+    }
+
+    public void crearEvento(final Evento evento){
+        Call<Evento> dato=ApiClient.getMyApiClient().crearEvento(token,evento);
+        dato.enqueue(new Callback<Evento>() {
+            @Override
+            public void onResponse(Call<Evento> call, Response<Evento> response) {
+                if(response.isSuccessful()){
+                    new ShowToast(context,"Has creado un nuevo evento "+evento.getTitulo()+
+                            " para la actividad "+evento.getActividad().getTitulo());
+                    obtenerMisActividades();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Evento> call, Throwable t) {
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
+            }
+        });
     }
 
 
