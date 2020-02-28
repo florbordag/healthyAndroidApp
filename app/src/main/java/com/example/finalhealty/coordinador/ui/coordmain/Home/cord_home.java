@@ -100,13 +100,9 @@ public class cord_home extends Fragment {
                 pass1 =  userinput1.getText().toString();
                 pass2 =  userinput2.getText().toString();
                 pass3=  userinput3.getText().toString();
-                if(!pass1.equals("")&&!pass2.equals("")&&!pass3.equals("")){
-                    if(pass2!=pass3){
-                        new ShowToast(getContext(),"Las contraseñas deben coincidir");
-                    } else {
+
                         cordHomeViewModel.putPassword(pass1,pass2);
-                    }
-                }
+
             }
         }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

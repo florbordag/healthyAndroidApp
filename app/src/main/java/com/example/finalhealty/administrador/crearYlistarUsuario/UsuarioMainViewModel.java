@@ -25,6 +25,7 @@ public class UsuarioMainViewModel extends AndroidViewModel {
     private String token;
     private SharedPreferences sp;
     private List<Usuario> usuarios;
+    private Boolean respuesta=true;
 
     private MutableLiveData<List<Usuario>> usuarioMutableLiveData;
 
@@ -80,5 +81,23 @@ public class UsuarioMainViewModel extends AndroidViewModel {
                 new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
             }
         });
+    }
+
+    public boolean validarMail(String mail){
+        Call<Usuario> dato=ApiClient.getMyApiClient().validar(token,mail);
+        dato.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                if(response.isSuccessful()&&response.body().getApellido()!=null){
+                    respuesta=false;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+
+            }
+        });
+        return respuesta;
     }
 }

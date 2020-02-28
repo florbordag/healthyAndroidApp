@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.finalhealty.R;
+import com.example.finalhealty.ShowToast;
 import com.example.finalhealty.administrador.AdminMain;
 import com.example.finalhealty.model.Usuario;
 import com.example.finalhealty.ui.inicio.MainActivity;
+
+import java.util.regex.Pattern;
 
 public class CrearUsuario extends Fragment {
     private UsuarioMainViewModel usuarioMainViewModel;
@@ -101,13 +105,26 @@ public class CrearUsuario extends Fragment {
         u.setFecNac(fecNac.getText().toString());
         u.setFumador(0);
 
-        usuarioMainViewModel.crearUSuario(u);
-        //obtener
+        if(validarEmail(u.getMail())){
+            if(usuarioMainViewModel.validarMail(u.getMail())){
+                usuarioMainViewModel.crearUSuario(u);
+                mail.setText("@healthy.com");
+                nombre.setText("");
+                apellido.setText("");
+                dni.setText("");
+                fecNac.setText("");
+            }else{
+                new ShowToast(getContext(),"La dirección de correo no se encuntra disponible");
+            }
+        } else{
+            new ShowToast(getContext(),"La dirección de correo no es válida");
+        }
 
-        mail.setText("@healthy.com");
-        nombre.setText("");
-        apellido.setText("");
-        dni.setText("");
-        fecNac.setText("");
+
+    }
+
+    private boolean validarEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
     }
 }

@@ -32,7 +32,7 @@ public class ApiClient {
     // https://healthy2020.conveyor.cloud/Api/
     // http://192.168.0.11:45455/Api/
     // http://10.75.220.46:45455/
-    private static final String PATH="http://10.75.220.46:45455/Api/";
+    private static final String PATH="https://healthy2020.conveyor.cloud/Api/";
     private static  MyApiInterface myApiInteface;
 
     public static MyApiInterface getMyApiClient(){
@@ -55,8 +55,8 @@ public class ApiClient {
 
         // Todes //
 
-        @GET("Usuario/ValidacionMail")
-        Call<Usuario> validar(@Header("Authorization")String token,@Query("Mail") String mail);
+        @GET("Usuario/ValidarMail")
+        Call<Usuario> validar(@Header("Authorization")String token,@Query("mail") String mail);
 
         @POST("Usuario/Login")
         Call<String> login(@Query("Mail") String mail, @Query("Password") String password);

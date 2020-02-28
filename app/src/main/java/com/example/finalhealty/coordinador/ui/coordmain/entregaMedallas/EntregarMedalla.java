@@ -64,8 +64,6 @@ public class EntregarMedalla extends Fragment {
         });
 
 
-        //Obtener el usuario del mail
-
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +74,16 @@ public class EntregarMedalla extends Fragment {
                             .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    u=entragarMedalViewModel.obtenerPorMail(mail.getText().toString());
+                                    /*u=entragarMedalViewModel.obtenerPorMail(mail.getText().toString());
                                     if(u!=null){
                                         crearMedalla();
                                     }else{
                                         new ShowToast(getContext(),"El mail ingresado no corresponde a ningún usuario registrado");
+                                    }*/
+                                    if(mail.getText().toString()=="u@u.c"){
+                                        new ShowToast(getContext(),"El mail ingresado no corresponde a ningún usuario registrado");
+                                    } else{
+                                        crearMedalla();
                                     }
                                 }
                             }).setNegativeButton("No", new DialogInterface.OnClickListener() {
