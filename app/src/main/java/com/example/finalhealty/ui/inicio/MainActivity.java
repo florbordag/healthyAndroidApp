@@ -72,17 +72,17 @@ public class MainActivity extends AppCompatActivity {
                         case "Usuario":
                             Intent i=new Intent(getApplicationContext(),Principal.class);
                             startActivity(i);
-                            //finish();
+                            finish();
                             break;
                         case "Coordinador":
                             Intent c= new Intent(getApplicationContext(), CoordMain.class);
                             startActivity(c);
-                            //finish();
+                            finish();
                             break;
                         case "Administrador":
                             Intent a = new Intent(getApplicationContext(), AdminMain.class);
                             startActivity(a);
-                            //finish();
+                            finish();
                             break;
                     }
                 }

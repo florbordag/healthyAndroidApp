@@ -87,6 +87,7 @@ public class FragMisActividades extends Fragment {
             TextView horario=itemView.findViewById(R.id.tvHorario);
             horario.setText(actividad.getHorario());
             Button button= itemView.findViewById(R.id.btnAbandonar);
+            Button buttonEv=itemView.findViewById(R.id.btnCrearEvento);
             if(actividad.getEstado().equals(1)) {
 
                 button.setText("Dar de baja");
@@ -101,6 +102,31 @@ public class FragMisActividades extends Fragment {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         cordActiViewModel.eliminarActividad();
+                                    }
+                                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                    }
+                });
+
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Nuevo Evento")
+                                .setMessage("¿Desea agregar un nuevo evento para la actividad "+actividad.getTitulo()+"?")
+                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+       //
+//                      //
+                                                         //
+                  ////////////////////////METODO QUE DEBE LLAMAR EL FLOTANTE CUANDO TENGA LOS DATOS DEL EVENTO
+           //                             cordActiViewModel.crearEvento(xxxx);
                                     }
                                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
