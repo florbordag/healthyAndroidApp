@@ -15,7 +15,7 @@
         android:textSize="20dp"
         android:layout_marginTop="20dp"
         android:textColor="@android:color/black"
-        android:text="Titulo:" />
+        android:text="Título" />
 
     <EditText
         android:id="@+id/etTituloMedalla"
@@ -24,7 +24,9 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        android:hint="titulo de medalla" />
+        android:hint="Título de medalla"
+
+        android:layout_marginHorizontal="30dp"/>
 
 
     <TextView
@@ -33,9 +35,9 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/black"
-        android:text="Descripcion:" />
+        android:text="Descripción" />
 
     <EditText
         android:id="@+id/etDescripMedalla"
@@ -43,7 +45,30 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="start|top"
-        android:inputType="textMultiLine" />
+        android:hint="Descripción de medalla"
+        android:textAlignment="center"
+        android:inputType="textMultiLine"
+        android:layout_marginHorizontal="30dp"/>
+    <TextView
+        android:id="@+id/View1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/black"
+        android:text="Ganador" />
+
+    <EditText
+        android:id="@+id/etMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Mail de aquel que recibe la medalla"
+        android:textAlignment="center"
+        android:inputType="textMultiLine"
+        android:layout_marginHorizontal="30dp"/>
 
     <TextView
         android:id="@+id/textView12"
@@ -51,17 +76,26 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:textColor="@android:color/black"
-        android:text="Color:" />
+        android:text="Color" />
 
     <Spinner
         android:id="@+id/spinnerColorMedal"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:textAlignment="center"
-        android:layout_marginTop="20dp"
-        android:entries="@array/coloresMedalla"/>
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:entries="@array/coloresMedalla"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/botonMedalla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="otorgar medalla"
+        android:layout_marginHorizontal="80dp"/>
 
 
 </LinearLayout>

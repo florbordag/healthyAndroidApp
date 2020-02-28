@@ -123,5 +123,25 @@ public class CordActiViewModel extends AndroidViewModel {
         });
     }
 
+    public void retomarActividad(final Actividad actividad){
+        Call<Actividad> dato=ApiClient.getMyApiClient().retomar(token,actividad.getId(),actividad);
+        dato.enqueue(new Callback<Actividad>() {
+            @Override
+            public void onResponse(Call<Actividad> call, Response<Actividad> response) {
+                if(response.isSuccessful()){
+                    new ShowToast(context,"Retomaste la actividad "+
+                            actividad.getTitulo()+" con éxito");
+                    obtenerMisActividades();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Actividad> call, Throwable t) {
+                new ShowToast(context,t.getMessage()+": "+t.getStackTrace().toString());
+            }
+        });
+
+    }
+
 
 }

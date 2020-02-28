@@ -72,7 +72,7 @@ public class CordEventoViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<Evento> call, Response<Evento> response) {
                 if(response.isSuccessful()){
-                    new ShowToast(context,"El evento se creo con éxito");
+                    new ShowToast(context,"El evento se creó con éxito");
                     obtenerMisEventos();
                 }
             }
@@ -89,10 +89,10 @@ public class CordEventoViewModel extends AndroidViewModel {
         dato.enqueue(new Callback<Evento>() {
             @Override
             public void onResponse(Call<Evento> call, Response<Evento> response) {
-                if(response.isSuccessful()){
-                    new ShowToast(context,"El evento se dio de baja con éxito");
-                    obtenerMisEventos();
-                }
+                    if(response.isSuccessful()) {
+                        obtenerMisEventos();
+                        new ShowToast(context, "Se dio de baja el evento " + response.body().getTitulo());
+                    }
             }
 
             @Override

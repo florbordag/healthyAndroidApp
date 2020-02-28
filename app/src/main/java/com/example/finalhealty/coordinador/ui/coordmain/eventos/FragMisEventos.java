@@ -97,8 +97,8 @@ public class FragMisEventos extends Fragment {
                 @Override
                 public void onClick(View view) {
                     new AlertDialog.Builder(getContext())
-                            .setTitle("Abandonar")
-                            .setMessage("¿Desea abandonar el evento "+evento.getTitulo()+"?")
+                            .setTitle("Dar de baja")
+                            .setMessage("¿Desea dar de baja el evento "+evento.getTitulo()+"? Esta acción es permanente.")
                             .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

@@ -51,6 +51,9 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
 
         // Todes //
 
+        @GET("Usuario/ValidacionMail")
+        Call<Usuario> validar(@Header("Authorization")String token,@Query("Mail") String mail);
+
         @POST("Usuario/Login")
         Call<String> login(@Query("Mail") String mail, @Query("Password") String password);
 
@@ -153,6 +156,10 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         @POST("Actividad")
         Call<Actividad> crearActividad(@Header("Authorization")String token, @Body Actividad a);
 
+        //MedallaVirtual
+        @POST("MedallaVirtual")
+        Call<MedallaVirtual> crearMedalla(@Header("Authorization")String token,@Body MedallaVirtual m);
+
 
         ///////ADMINISTRADORES////////
 
@@ -170,6 +177,9 @@ public class ApiClient {   //https://healthy2020-ih7.conveyor.cloud/
         //Actividades
         @GET("Actividad/Admin")
         Call<List<Actividad>> getActividades(@Header("Authorization")String token);
+
+        @PUT("Actividad/{id}")
+        Call<Actividad> retomar(@Header("Authorization")String token,@Path("id") int id,@Body Actividad actividad);
 
 
 

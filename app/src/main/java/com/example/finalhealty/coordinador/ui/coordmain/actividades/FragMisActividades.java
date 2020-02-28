@@ -87,26 +87,57 @@ public class FragMisActividades extends Fragment {
             TextView horario=itemView.findViewById(R.id.tvHorario);
             horario.setText(actividad.getHorario());
             Button button= itemView.findViewById(R.id.btnAbandonar);
-            button.setText("Eliminar");
+            if(actividad.getEstado().equals(1)) {
 
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    new AlertDialog.Builder(getContext())
-                            .setTitle("Eliminar")
-                            .setMessage("¿Desea dar de baja esta actividad?")
-                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    cordActiViewModel.eliminarActividad();
-                                }
-                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                button.setText("Dar de baja");
 
-                        }
-                    }).show();
-                }});
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Dar de baja")
+                                .setMessage("¿Desea dar de baja esta actividad? Podrá retomar la actividad más adelante.")
+                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        cordActiViewModel.eliminarActividad();
+                                    }
+                                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                    }
+                });
+            } else {
+                nombre.setTextColor(getResources().getColor(R.color.light));
+                descripcion.setTextColor(getResources().getColor(R.color.light));
+                horario.setTextColor(getResources().getColor(R.color.light));
+                button.setTextColor(getResources().getColor(R.color.light));
+
+                button.setText("Retomar Actividad");
+
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Retomar")
+                                .setMessage("¿Desea retomar esta actividad?")
+                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        cordActiViewModel.retomarActividad(actividad);
+                                    }
+                                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                    }
+                });
+            }
 
             return itemView;
         }

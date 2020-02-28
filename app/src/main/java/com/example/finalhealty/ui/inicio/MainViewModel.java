@@ -55,8 +55,8 @@ public class MainViewModel extends AndroidViewModel {
         return usuarioMutableLiveData;
     }
 
-// >>>>>>>>>>>>>>>>>>>TRUE METHOD<<<<<<<<<<<<<<<<
-   public void ingresar(String mail, String password){
+    // >>>>>>>>>>>>>>>>>>>TRUE METHOD<<<<<<<<<<<<<<<<
+    public void ingresar(String mail, String password){
 
         Call<String> dato= ApiClient.getMyApiClient().login(mail,password);
 

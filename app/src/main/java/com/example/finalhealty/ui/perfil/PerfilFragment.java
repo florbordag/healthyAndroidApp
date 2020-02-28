@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 
@@ -118,6 +120,8 @@ public class PerfilFragment extends Fragment {
 
         perfilViewModel.putUsuario(user);
     }
+
+
 
     public void fijarDatos(Usuario sesion){
 
