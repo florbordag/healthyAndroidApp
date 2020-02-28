@@ -102,9 +102,6 @@ public class ApiClient {
         @POST("InscripcionEvento")
         Call<Evento> inscribirse(@Header("Authorization")String token, @Query("EventoId") int eventoId);
 
-        @GET("InscripcionEvento")
-        Call<Integer> idInscripcion(@Header("Authorization")String token, @Query("usuario") int usuario, @Query("evento") int evento);
-
         @DELETE("InscripcionEvento")
         Call<Evento> abandonarEvento(@Header("Authorization")String token, @Query("Id") int eventoId);
 
@@ -131,11 +128,8 @@ public class ApiClient {
         @GET("Evento/Coordinador/mias")
         Call<List<Evento>> getMisEventosCoord(@Header("Authorization")String token);
 
-        @PUT("Evento/{id}")
-        Call<Evento> putEvento(
-                @Header("Authorization")String token,
-                @Path("id") int id,
-                @Body Evento evento);
+        @GET("Evento/Coordinador/todas")
+        Call<List<Evento>> getTodosEventosCoord(@Header("Authorization")String token);
 
         @POST("Evento")
         Call<Evento> crearEvento(@Header("Authorization")String token, @Body Evento e);
@@ -144,24 +138,20 @@ public class ApiClient {
         Call<Evento> darDeBaja(@Header("Authorization")String token, @Query("Id") int evento);
 
 
+
         //Actividades
         @GET("Actividad/Coordinador/mias")
         Call<List<Actividad>> getMisActividadesCoord(@Header("Authorization")String token);
 
+        @GET("Actividad/Coordinador/todas")
+        Call<List<Actividad>> getTodasCoord(@Header("Authorization")String token);
+
         @GET("Actividad/Coordinador/mi")
         Call<List<Actividad>> getActividadesDisponiblesCoord(@Header("Authorization")String token);
-
-        @PUT("Actividad/{id}")
-        Call<Actividad> putEvento(
-                @Header("Authorization")String token,
-                @Path("id") int id,
-                @Body Actividad actividad);
 
         @POST("Actividad")
         Call<Actividad> crearActividad(@Header("Authorization")String token, @Body Actividad a);
 
-        @DELETE("Actividad")
-        Call<Actividad> eliminar(@Header("Authorization")String token,@Body Actividad actividad);
 
         //MedallaVirtual
         @POST("MedallaVirtual")

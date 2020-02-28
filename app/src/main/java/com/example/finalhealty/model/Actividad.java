@@ -7,13 +7,13 @@ public class Actividad {
     private String descripcion;
     private String fechaUltMod;
     private int estado;
-    private String coordinadorId;
+    private int coordinadorId;
     private Usuario Coordinador;
 
     public Actividad() {
     }
 
-    public Actividad(int id, String nombre, String horario, String descripcion, String fechaUltMod, int estado, String coordinadorId) {
+    public Actividad(int id, String nombre, String horario, String descripcion, String fechaUltMod, int estado, int coordinadorId) {
         this.id = id;
         this.nombre = nombre;
         this.horario = horario;
@@ -81,11 +81,11 @@ public class Actividad {
         this.estado = estado;
     }
 
-    public String getCoordinadorId() {
+    public int getCoordinadorId() {
         return coordinadorId;
     }
 
-    public void setCoordinadorId(String coordinadorId) {
+    public void setCoordinadorId(int coordinadorId) {
         this.coordinadorId = coordinadorId;
     }
 
